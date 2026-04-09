@@ -1,0 +1,11 @@
+---
+title: "Mini Proyecto 2026. Análisis de los logs de la asignatura en Aula Virtual
+  durante el curso 2024-2025"
+author: "Yu Jing Zhou"
+date: "2026-04-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
