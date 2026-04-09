@@ -9,3 +9,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+**Listado de Preguntas**
+
+- ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? Hay picos de actividad durante la noche o en épocas de exámenes?
