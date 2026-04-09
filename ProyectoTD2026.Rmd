@@ -13,3 +13,4 @@ knitr::opts_chunk$set(echo = TRUE)
 **Listado de Preguntas**
 
 - ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? Hay picos de actividad durante la noche o en épocas de exámenes?
+- ¿Cómo cambia la actividad según el día de la semana y la hora del día? Estudian los fines de semana?
