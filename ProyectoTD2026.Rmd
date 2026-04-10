@@ -13,5 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 **Listado de Preguntas**
 
 - ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? Hay picos de actividad durante la noche o en épocas de exámenes?
+
 - ¿Cómo cambia la actividad según el día de la semana y la hora del día? Estudian los fines de semana?
+
 - La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, cuánto aumenta?
+
+- Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, cuál?
