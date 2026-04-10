@@ -1,9 +1,30 @@
 ---
-title: "Mini Proyecto 2026. Análisis de los logs de la asignatura en Aula Virtual
-  durante el curso 2024-2025"
-author: "Yu Jing Zhou"
-date: "2026-04-09"
-output: html_document
+title: "Mini Proyecto 2026. Análisis de los logs de la asignatura en Aula Virtual durante el curso 2024-2025"
+author: 
+  - "Grupo G:"
+  - "Narea Galera Navarro,"
+  - "Nicolás Hellín Sánchez,"
+  - "Joan Navarro Moya,"
+  - "Javier Ortolá Medina,"
+  - "Yu Jing Zhou"
+date: "`r Sys.Date()`"
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    df_print: kable
+  bookdown::html_document2:
+    fig_caption: yes
+    df_print: kable
+lang: es
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{fancyhdr}
+  - \usepackage{caption}
+  - \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \renewcommand{\headrulewidth}{0.5pt}
+  - \renewcommand{\footrulewidth}{0.4pt}
 ---
 
 ```{r setup, include=FALSE}
