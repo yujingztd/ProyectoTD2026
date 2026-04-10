@@ -19,3 +19,5 @@ knitr::opts_chunk$set(echo = TRUE)
 - La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, cuánto aumenta?
 
 - Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, cuál?
+
+- Distintos perfiles de estudiantes según su forma de usar la plataforma (madrugadores, nocturnos, intensivos, "fantasma", etc.)
