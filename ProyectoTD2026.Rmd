@@ -67,7 +67,7 @@ library(hms)
 ```
 
 
-# Carga de los datos
+# Importación de los datos
 
 ```{r}
 datos <- read_csv("data/logs_moodle_anon.csv", 
