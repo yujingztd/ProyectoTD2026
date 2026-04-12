@@ -84,3 +84,44 @@ datos <- datos %>%
     Dia_Semana = wday(Hora, label = TRUE, abbr = FALSE)
   )
 ```
+
+
+
+# Tabla
+
+## Datos cantidad de eventos
+
+Para tener una primera visión de los hábitos de conexión, hemos agrupado la cantidad total de clics que hacen los estudiantes según el día de la semana.
+
+Como se puede observar en la Tabla \@ref(tab:tabla-dias), la actividad de los usuarios varía dependiendo de si nos encontramos a principios, a mediados o a finales de la semana.
+
+```{r tabla-dias}
+resumen_dias <- datos %>%
+  count(Dia_Semana, name = "Total_Clics")
+
+knitr::kable(resumen_dias, 
+             caption = "Total de interacciones por día de la semana.",
+             col.names = c("Día de la semana", "Número de interacciones"),
+             booktabs =TRUE )
+```
+
+
+# Figuras
+
+## Cantidad de eventos
+
+Podemos también represneta esta información de forma gráfica, para que sea mucho más fácil de interpretar los resultados.
+
+En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics que hay según el día de la semana. 
+
+```{r figura-dias, fig.cap="Eventos por día de la semana"}
+ggplot(datos, aes(x = Dia_Semana)) +
+  geom_bar(aes(fill = Dia_Semana), color = "black", alpha = 0.8) +
+  labs(
+    title = "Clics según el día de la semana",
+    x = "Día de la semana",
+    y = "Cantidad de eventos (Clics)") +
+  theme_minimal() +
+  theme(axis.text.x=element_text(angle=20)) +
+  theme(legend.position = "bottom")
+```
