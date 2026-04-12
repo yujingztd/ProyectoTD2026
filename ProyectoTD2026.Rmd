@@ -56,3 +56,12 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 Para responder a estas preguntas hemos utilizado R como herramienta principal. Concretamente, `tidyverse` y `dplyr` para manipular y transformar los datos y `ggplot2` para las visualizaciones.
 
 
+# Carga de las librerías
+
+```{r, results='hide'}
+library(readr)
+library(tidyverse)
+library(dplyr)
+library(lubridate)
+library(hms)
+```
