@@ -64,6 +64,7 @@ library(tidyverse)
 library(dplyr)
 library(lubridate)
 library(hms)
+library(knitr)
 ```
 
 
