@@ -65,3 +65,21 @@ library(dplyr)
 library(lubridate)
 library(hms)
 ```
+
+
+# Carga de los datos
+
+```{r}
+datos <- read_csv("data/logs_moodle_anon.csv", 
+    col_types = cols(Hora = col_datetime(format = "%d/%m/%y, %H:%M:%S")))
+
+# Creamos nuevas columnas para los tiempos y las fechas
+datos <- datos %>%
+  mutate(
+    Solo_Fecha = date(Hora),
+    Tiempo_Exacto = as_hms(Hora),
+    Solo_Hora = hour(Hora),
+    Solo_Mes = month(Hora, label = TRUE, abbr = FALSE),
+    Dia_Semana = wday(Hora, label = TRUE, abbr = FALSE)
+  )
+```
