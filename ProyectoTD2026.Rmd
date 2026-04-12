@@ -31,14 +31,26 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Introducción
+
+Cada vez que un estudiante abre el Aula Virtual, entrega una práctica o intenta un cuestionario, Moodle lo registra. La plataforma lleva la cuenta de todo: a qué hora te conectas, cuántas veces repites un cuestionario, si entregas con días de antelación o en el último momento. El resultado es un rastro digital del comportamiento de toda la clase a lo largo del curso.
+
+En este proyecto analizamos precisamente ese rastro. El conjunto de datos que tenemos recoge todos los eventos registrados en el Aula Virtual durante el curso 2024-2025 de la asignatura *Tractament de les Dades*, con los datos personales debidamente anonimizados. En total, más de 109.000 eventos generados por 87 usuarios a lo largo de casi seis meses de curso.
+
+El objetivo no es solo describir los datos, sino responder preguntas que nos parecen interesantes sobre cómo estudiamos:
+
 **Listado de Preguntas**
 
-- ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? Hay picos de actividad durante la noche o en épocas de exámenes?
+- ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
 
-- ¿Cómo cambia la actividad según el día de la semana y la hora del día? Estudian los fines de semana?
+- ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
-- La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, cuánto aumenta?
+- La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
 
-- Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, cuál?
+- ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
-- Distintos perfiles de estudiantes según su forma de usar la plataforma (madrugadores, nocturnos, intensivos, "fantasma", etc.)
+- ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
+
+Para responder a estas preguntas hemos utilizado R como herramienta principal. Concretamente, `tidyverse` y `dplyr` para manipular y transformar los datos y `ggplot2` para las visualizaciones.
+
+
