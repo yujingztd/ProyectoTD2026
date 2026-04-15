@@ -58,13 +58,17 @@ Para responder a estas preguntas hemos utilizado R como herramienta principal. C
 
 # Carga de las librerías
 
-```{r, results='hide'}
-library(readr)
-library(tidyverse)
-library(dplyr)
-library(lubridate)
-library(hms)
-library(knitr)
+```{r, include=FALSE}
+if (!require(pacman)) install.packages("pacman")
+
+pacman::p_load(
+  readr,
+  tidyverse,
+  dplyr,
+  lubridate,
+  hms,
+  knitr
+)
 ```
 
 
