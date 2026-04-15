@@ -48,6 +48,5 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-data/
+
 ProyectoTD2026.Rproj
-EnlaceRepo.txt
