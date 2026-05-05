@@ -78,6 +78,37 @@ pacman::p_load(
 datos <- read_csv("data/logs_moodle_anon.csv", 
     col_types = cols(Hora = col_datetime(format = "%d/%m/%y, %H:%M:%S")))
 
+i = 1
+tipo = c()
+levels = c()
+TopLevel = c()
+TopCount = c()
+Porcentaje_NA = c()
+while(i<=ncol(datos)){
+Nombres = colnames(datos)
+x = datos[[Nombres[i]]]
+x
+variable = Nombres[i]
+if (i == 1){
+  tiempo = paste(class(x),collapse = " ")
+  tipo = c(tipo,tiempo)
+}
+else{
+  tipo = c(tipo,class(x))
+}
+levels = c(levels,unique(x)|>length())
+df = table(x) |>as.data.frame() |> arrange(desc(Freq))
+TopLevel = c(TopLevel,as.character(df[1,1]))
+TopCount = c(TopCount,df[1,2])
+Porcentaje_NA = c(Porcentaje_NA,round((sum(is.na(x))/nrow(datos))*100,digits = 1))
+i = i + 1 
+
+length(TopLevel)
+class(TopLevel)
+}
+df_p = data.frame(Nombres,tipo,levels,TopLevel,TopCount,Porcentaje_NA)
+
+
 # Creamos nuevas columnas para los tiempos y las fechas
 datos <- datos %>%
   mutate(
