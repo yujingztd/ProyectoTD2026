@@ -419,3 +419,61 @@ Comparando la actividad media en días normales (entre 3 y 5 días antes) con lo
 Esto indica que los estudiantes tienden a concentrar su trabajo en los días cercanos a las entregas y cuestionarios, mostrando un patrón claro de acumulación de actividad.
 
 Cabe destacar que, al no disponer de las fechas oficiales de entrega, estas han sido aproximadas mediante el análisis de picos de actividad en los logs.
+
+-   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
+
+Primero un vistazo muy básico para ver que días tienen más actividad y de forma más exacta que en la figura \@ref(fig:figura-dias)
+
+```{r}
+dias = table(datos$Dia_Semana)
+sort(dias,decreasing = T)
+```
+
+Ahora observaremos los días más activos para alumnos y profesores
+
+```{r}
+df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuario`%in% profesores,"profesor","alumno"))
+df_profesor = df_profesor_alumno %>% filter(clase == "profesor")
+dias_profesores = table(df_profesor$Dia_Semana)
+dias_alumnos = table(datos_alumnos$Dia_Semana)
+sort(dias_profesores,decreasing = T)
+sort(dias_alumnos,decreasing = T)
+
+```
+Podemos observar que la frecuencia de los alumnos es muy parecida a las frecuencia total
+
+
+Ahora visualizaremos la diferencia de actividad entre los profesores y los alumnos, para tener otra perpectiva de los datos y sus diferencias
+
+```{r}
+df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuario`%in% profesores,"profesor","alumno"))
+df_profesor_alumno %>% ggplot(aes(x = Dia_Semana)) + geom_bar(aes(fill = Dia_Semana),color = "black") + facet_grid(~clase) + labs(title = "Actividad cada día a la semana alumno~profesor",y = "Frecuencia",x = "Día de la semana",fill = "Día") + theme(axis.text.x=element_text(angle=23)) 
+
+
+```
+Después de estas dos observaciones (el recuento y el barplot) podemos saber que la actividad no es muy similar, pero tiene una similitud que es la poca actividad los fines de semana.En los alumnos se observan ciertos picos como el miércoles, día en el cual habla clase u otros como el viernes por las entregas de tareas.
+
+Ahora es momento de observar la actividad en las diferentes horas.
+
+```{r}
+sort(table(datos$Solo_Hora),decreasing = T)
+
+```
+Analizando este recuento concluimos que las horas diurnas son más activas.
+
+Después de esta observación compararemos la actividad en horas de los profesores y alumnos.
+
+```{r}
+horas_profesores = table(df_profesor$Solo_Hora)
+horas_alumnos = table(datos_alumnos$Solo_Hora)
+sort(horas_profesores,decreasing = T)
+sort(horas_alumnos,decreasing = T)
+
+```
+
+Vamos a plasmar estos datos en un gráfico de barras.
+
+```{r}
+ df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + geom_bar(aes(fill = factor(Solo_Hora)),color = "black") + facet_grid(~clase) + labs(title = "Actividad cada hora del día alumno~profesor",y = "Frecuencia",x = "Hora del día",fill = "Hora") + theme(axis.text.x=element_text(angle=23)) 
+```
+Después de ambas observaciones ,los profesores y los alumnos son diurnos aunque en las horas más comunes de los profesores aparezca una hora nocturna, en la noche ninguno es muy activo aunque horas finales de la noche y primeras son más frecuentes en los profesores. Los alumnos son más frecuentes en horas lectivas.
