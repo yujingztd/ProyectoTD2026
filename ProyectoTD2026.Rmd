@@ -43,18 +43,17 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 **Listado de Preguntas**
 
-- ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
+-   ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
 
-- ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
+-   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
-- La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
+-   La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
 
-- ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
+-   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
-- ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
+-   ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
 
 Para responder a estas preguntas hemos utilizado R como herramienta principal. Concretamente, `tidyverse` y `dplyr` para manipular y transformar los datos y `ggplot2` para las visualizaciones.
-
 
 # Carga de las librerías
 
@@ -70,7 +69,6 @@ pacman::p_load(
   knitr
 )
 ```
-
 
 # Importación de los datos
 
@@ -120,8 +118,6 @@ datos <- datos %>%
   )
 ```
 
-
-
 # Tabla
 
 ## Datos cantidad de eventos
@@ -140,14 +136,13 @@ knitr::kable(resumen_dias,
              booktabs =TRUE )
 ```
 
-
 # Figuras
 
 ## Cantidad de eventos
 
 Podemos también represneta esta información de forma gráfica, para que sea mucho más fácil de interpretar los resultados.
 
-En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics que hay según el día de la semana. 
+En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics que hay según el día de la semana.
 
 ```{r figura-dias, fig.cap="Eventos por día de la semana"}
 ggplot(datos, aes(x = Dia_Semana)) +
@@ -161,8 +156,7 @@ ggplot(datos, aes(x = Dia_Semana)) +
   theme(legend.position = "bottom")
 ```
 
-
-- ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
+-   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
 ```{r}
 resumen_actividades <- datos %>%
@@ -196,8 +190,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
   theme_minimal()
 ```
 
-
-- ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
+-   ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
 
 Primero analizamos la actividad a lo largo del curso.
 
@@ -219,10 +212,9 @@ ggplot(datos_cuatri, aes(x = Solo_Fecha)) +
   theme_minimal()
 ```
 
-Antes de generar la gráfica, pensábamos que habría picos de conexión durante el mes de mayo, que es cuando se acercan los exámenes. Sin embargo, tras observar la Figura \@ref(fig:figura-actividad), podemos rechazar esta hipótesis inicial. 
+Antes de generar la gráfica, pensábamos que habría picos de conexión durante el mes de mayo, que es cuando se acercan los exámenes. Sin embargo, tras observar la Figura \@ref(fig:figura-actividad), podemos rechazar esta hipótesis inicial.
 
 Los datos revelan que el pico de conexión tuvo lugar en el mes de febrero, que tiene mucho sentido pues es cuando los alumnos empiezan con esta asignatura nueva, empiezan a descargar materiales, etc.
-
 
 Ahora pasamos a analizar la actividad a durante la noche.
 
@@ -244,12 +236,11 @@ ggplot(actividad_hora, aes(x = Solo_Hora , y = Total_Clics, fill = Periodo)) +
   theme(legend.position = "right")
 ```
 
-Al principio podríamos pensar que quizá haya más actividad durante la tarde, acercándonos ya a las horas de noche porque es muy típico de los alumnos intentar rescatar tareas o entregas que estuvieron procrastinando días y días. 
+Al principio podríamos pensar que quizá haya más actividad durante la tarde, acercándonos ya a las horas de noche porque es muy típico de los alumnos intentar rescatar tareas o entregas que estuvieron procrastinando días y días.
 
 No obstante, en la Figura \@ref(fig:figura-horas) podemos ver que los picos están en las horas 9 y 11. Lo cual tiene mucho sentido pues es cuando empiezan las clases.
 
-
-- ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
+-   ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
 
 Para finalizar el análisis, nos preguntamos si todos los estudiantes utilizan la plataforma de la misma forma o si existen patrones de comportamiento. Con este objetivo aplicamos un algoritmo de clustering sobre cinco variables construidas a partir de los registros de actividad de cada alumno: el número total de clics, los días distintos de conexión, la hora media de actividad, la proporción de actividad nocturna y la proporción de actividad en fin de semana.
 
@@ -278,7 +269,6 @@ datos_alumnos <- datos %>%
          Solo_Fecha <= as.Date("2025-07-31"))
 ```
 
-
 ```{r}
 # Construir perfil por alumno
 perfil_alumnos <- datos_alumnos %>%
@@ -297,7 +287,6 @@ perfil_alumnos <- datos_alumnos %>%
   )
 ```
 
-
 ```{r}
 # Escalar y aplicar k-means con k = 3
 set.seed(42)
@@ -312,7 +301,7 @@ perfil_alumnos <- perfil_alumnos %>%
                           labels = c("Perfil A", "Perfil B", "Perfil C")))
 ```
 
-Para elegir el número de grupos, analizamos cómo disminuye la variabilidad  al añadir más clusters. Seleccionamos k = 3 por ofrecer un equilibrio razonable entre simplicidad e interpretabilidad.
+Para elegir el número de grupos, analizamos cómo disminuye la variabilidad al añadir más clusters. Seleccionamos k = 3 por ofrecer un equilibrio razonable entre simplicidad e interpretabilidad.
 
 ```{r tabla-perfiles}
 # Tabla resumen 
@@ -379,7 +368,6 @@ perfil_alumnos %>%
         plot.title = element_text(hjust = 0.5))
 ```
 
-
 Las Figuras \@ref(fig:fig-habitos-conexion) y \@ref(fig:fig-volumen-actividad) nos ayudan a entender mejor los tres perfiles que hemos identificado.
 
 El Perfil A, con 12 alumnos, reúne a los usuarios menos activos. Comparados con los demás, realizan menos clics y se conectan durante menos días. Además, apenas utilizan la plataforma por la noche o durante los fines de semana, por lo que parece que utilizan la plataforma de forma más puntual.
@@ -389,3 +377,45 @@ El Perfil B reúne a 15 estudiantes con una actividad intermedia, aunque destaca
 El Perfil C es el grupo más numeroso, con 49 estudiantes, y es el perfil más habitual dentro de la clase. Su actividad se concentra en horario diurno y acumulan un gran número de días activos y de clics. En general, mantienen una interacción constante con el aula virtual durante el cuatrimestre.
 
 Es importante tener en cuenta que estos perfiles reflejan patrones de comportamiento dentro de la plataforma, pero no muestran capacidad ni el esfuerzo real. Una menor actividad registrada no significa necesariamente un peor desempeño en la asignatura, sino simplemente una menor huella digital dentro del entorno virtual.
+
+-   La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
+
+```{r}
+#Aproximamos la fecha de entrega según el pico de uso
+fechas_clave <- datos %>% filter(Componente %in% c("Tarea", "Cuestionario")) %>% mutate(Fecha = as.Date(Hora)) %>% count(`Contexto del evento`, Fecha) %>% group_by(`Contexto del evento`) %>% slice_max(n, n = 1, with_ties = FALSE) %>% ungroup() %>% rename(Fecha_Clave = Fecha)
+```
+
+```{r}
+#Miramos cuantos dias antes o despues ocurre cada evento
+datos_dist <- datos %>% filter(Componente %in% c("Tarea", "Cuestionario")) %>% mutate(Fecha = as.Date(Hora)) %>% left_join(fechas_clave, by = "Contexto del evento") %>% mutate(distancia = as.numeric(Fecha - Fecha_Clave))
+```
+
+```{r}
+#Seleccionamos un período de cinco dias antes a dos dias después
+resumen_dist <- datos_dist %>% filter(distancia >= -5 & distancia <= 2) %>% count(distancia)
+```
+
+```{r}
+#Creamos un gráfico para comparar la actividad
+ggplot(resumen_dist, aes(x = distancia, y = n)) + geom_col(fill = "lightblue", col = "black") + labs(title = "Actividad en torno a entregas y cuestionarios",x = "Días respecto a la entrega", y = "Número de interacciones") 
+```
+
+```{r}
+#Calculamos cuanto aumenta la actividad
+antes <- resumen_dist %>% filter(distancia %in% c(-5, -4, -3)) %>% summarise(media = mean(n)) %>% pull(media)
+
+despues <- resumen_dist %>% filter(distancia %in% c(-2, -1, 0)) %>% summarise(media = mean(n)) %>% pull(media)
+
+aumento <- despues / antes
+aumento
+```
+
+Para analizar si la actividad se concentra antes de entregas y cuestionarios, hemos estimado la fecha de entrega de cada actividad como el día con mayor número de interacciones registradas en los logs. A partir de esta referencia, hemos calculado la distancia en días respecto a dicha fecha.
+
+En la Figura se observa claramente que la actividad aumenta a lo largo de los días previos de la supuesta fecha de entrega(en nuestro caso, día 0), alcanzando el máximo valor en dicho día.
+
+Comparando la actividad media en días normales (entre 3 y 5 días antes) con los días inmediatamente previos (2 días antes y el mismo día), se observa que la actividad es aproximadamente **7 veces mayor** en el periodo previo según la media de actividad en los intervalos.
+
+Esto indica que los estudiantes tienden a concentrar su trabajo en los días cercanos a las entregas y cuestionarios, mostrando un patrón claro de acumulación de actividad.
+
+Cabe destacar que, al no disponer de las fechas oficiales de entrega, estas han sido aproximadas mediante el análisis de picos de actividad en los logs.
