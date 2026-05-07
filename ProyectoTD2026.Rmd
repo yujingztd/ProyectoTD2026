@@ -333,7 +333,8 @@ perfil_alumnos %>%
 
 La Tabla \@ref(tab:tabla-perfiles) recoge los valores medios de cada variable por perfil. A primera vista ya se aprecian diferencias claras entre los tres grupos, especialmente en el volumen de actividad y en los hábitos horarios.
 
-```{r}
+```{r fig-habitos-conexion, fig.cap="Hábitos de conexión por perfil de estudiante"}
+
 # Gráfico 1: variables de proporción 
 
 perfil_alumnos %>%
@@ -352,6 +353,10 @@ perfil_alumnos %>%
        x = NULL, y = NULL) +
   theme_minimal() +
   theme(legend.position = "none")
+
+```
+
+```{r fig-volumen-actividad, fig.cap="Volumen de actividad por perfil de estudiante"}
 
 # Gráfico 2: variables de volumen
 
