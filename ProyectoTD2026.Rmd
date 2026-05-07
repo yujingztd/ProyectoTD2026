@@ -352,7 +352,8 @@ perfil_alumnos %>%
   labs(title = "Hábitos de conexión por perfil",
        x = NULL, y = NULL) +
   theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5))
 
 ```
 
@@ -374,11 +375,12 @@ perfil_alumnos %>%
   labs(title = "Volumen de actividad por perfil",
        x = NULL, y = NULL) +
   theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5))
 ```
 
 
-Los gráficos nos ayudan a entender mejor los tres perfiles que hemos identificado.
+Las Figuras \@ref(fig:fig-habitos-conexion) y \@ref(fig:fig-volumen-actividad) nos ayudan a entender mejor los tres perfiles que hemos identificado.
 
 El Perfil A, con 12 alumnos, reúne a los usuarios menos activos. Comparados con los demás, realizan menos clics y se conectan durante menos días. Además, apenas utilizan la plataforma por la noche o durante los fines de semana, por lo que parece que utilizan la plataforma de forma más puntual.
 
