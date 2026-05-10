@@ -436,7 +436,9 @@ df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuari
 df_profesor = df_profesor_alumno %>% filter(clase == "profesor")
 dias_profesores = table(df_profesor$Dia_Semana)
 dias_alumnos = table(datos_alumnos$Dia_Semana)
+print("Profesores")
 sort(dias_profesores,decreasing = T)
+print("Alumnos")
 sort(dias_alumnos,decreasing = T)
 
 ```
@@ -474,6 +476,37 @@ sort(horas_alumnos,decreasing = T)
 Vamos a plasmar estos datos en un gráfico de barras.
 
 ```{r}
- df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + geom_bar(aes(fill = factor(Solo_Hora)),color = "black") + facet_grid(~clase) + labs(title = "Actividad cada hora del día alumno~profesor",y = "Frecuencia",x = "Hora del día",fill = "Hora") + theme(axis.text.x=element_text(angle=23)) 
+ df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + geom_bar(aes(fill = factor(Solo_Hora)),color = "black")+ facet_grid(~clase)  + labs(title = "Actividad cada hora del día alumno~profesor",y = "Frecuencia",x = "Hora del día",fill = "Hora") + theme(axis.text.x=element_text(angle=23)) 
+
 ```
 Después de ambas observaciones ,los profesores y los alumnos son diurnos aunque en las horas más comunes de los profesores aparezca una hora nocturna, en la noche ninguno es muy activo aunque horas finales de la noche y primeras son más frecuentes en los profesores. Los alumnos son más frecuentes en horas lectivas.
+
+
+Ahora después de lo analizado hacemos una comparativa de la frecuencia entre alumnos y profesores para cada día , estos días divididos en horas , una por cada día de la semana
+
+```{r}
+dias = unique(df_profesor_alumno$Dia_Semana)
+i = 1
+while(i <= length(dias)){
+  df_dia = df_profesor_alumno  %>% filter(Dia_Semana == dias[i] )
+  print(df_dia %>% ggplot(aes(x = Solo_Hora)) + geom_bar(aes(fill = factor(Solo_Hora)),color = "black") + facet_grid(~clase) + labs(title = paste("Actividad cada hora del día alumno~profesor",dias[i]),y = "Frecuencia",x = "Hora del día",fill = "Hora") + theme(axis.text.x=element_text(angle=23)))
+  i = i + 1
+}
+
+```
+Al hacerlo todo a la vez parece que está desbalanceado porque hay menos actividad de los profesores que de los alumnos.
+
+Lunes: Durante todo el día la mayoría es de los alumnos pero a las 23 hay un gran pico de profesores , en cambio los alumnos se conectan más durante el intervalo de 9 a 14.
+
+Martes: Se visualiza un gran pico de profesores a las 12 que sorprende porque en general el día es poco activo, en alumnos se mantiene la actividad de 9 a 23.
+
+Miércoles: El día es activo pero hay un gran número de actividad de alumnos a las 9 y las 10, por otro ladolos profesores no son muy activos y los pico son a las 9 y 11.
+
+Jueves: El intervalo de 9 a 14 es el más activo para dos pero hay otro intervalo interesante de 22 a 23.
+
+Viernes: En alumnos hay conexiones constantes durante todo el día pero sobre todo por la mañana, y por la noche para poder hacer entregas, para los profesores en horas muy tempranas del día 0 y 1 , después por la mañana en el horario de 9 a 11.
+
+Sábado: Es un día muy poco activo para los dos al ser fin de semana. En alumnos es constante durante todo el día porque no hay muchas conexiones entonces la diferencia entre las horas no es muy grande. En los profesores prácticamente todas las conexiones son a las 7 y 8.
+
+Domingo: Otro día poco activo para los dos por ser el segundo día del fin de semana. Como en el anterior día en los alumnos el días esta balanceado porque las diferencias son mínimas entre las horas. En los profesores aparece un pequeño pico a las 20.
+
