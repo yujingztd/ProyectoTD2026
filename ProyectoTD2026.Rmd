@@ -118,7 +118,7 @@ datos <- datos %>%
   )
 ```
 
-# Tabla
+# Análisis Exploratorio 
 
 ## Datos cantidad de eventos
 
@@ -136,10 +136,6 @@ knitr::kable(resumen_dias,
              booktabs =TRUE )
 ```
 
-# Figuras
-
-## Cantidad de eventos
-
 Podemos también represneta esta información de forma gráfica, para que sea mucho más fácil de interpretar los resultados.
 
 En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics que hay según el día de la semana.
@@ -155,6 +151,23 @@ ggplot(datos, aes(x = Dia_Semana)) +
   theme(axis.text.x=element_text(angle=20)) +
   theme(legend.position = "bottom")
 ```
+
+## Componentes más utilizados
+
+```{r tabla-componentes}
+top_componentes <- datos %>%
+  count(Componente, name = "Total_Clics", sort = TRUE) %>%
+  head(5) # Mostramos solo el Top 5 para no saturar el PDF
+
+knitr::kable(top_componentes, 
+             caption = "Top 5 Componentes más utilizados",
+             col.names = c("Componente", "Total_Clics"),
+             booktabs =TRUE )
+```
+
+Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componentes más recurrentes del Aula Virtual son: "Sistema", -que incluye, por ejemplo, hacer Login, Logout, mirar el panel de calificaciones-, "Tarea", "Cuestionario", "Carpeta" y "Asistencia".
+
+# Análisis profundo
 
 -   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
