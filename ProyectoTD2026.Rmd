@@ -171,7 +171,7 @@ Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componente
 
 -   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
-```{r}
+```{r tabla-participacion}
 resumen_actividades <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`, name = "Total_Participaciones") %>%
@@ -183,9 +183,7 @@ kable(resumen_actividades,
       booktabs = TRUE)
 ```
 
-```{r}
-library(tidyverse)
-
+```{r figura-participacion, fig.cap="Eventos por día de la semana", fig.pos="H"}
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
