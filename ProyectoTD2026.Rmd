@@ -33,7 +33,7 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, , fig.pos = 'H')
+knitr::opts_chunk$set(warning=FALSE, echo=FALSE, fig.pos = 'H')
 ```
 
 # Introducción
