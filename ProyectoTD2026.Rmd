@@ -586,6 +586,8 @@ while(i <= length(dias)){
 
 ```
 
+\FloatBarrier
+
 Al hacerlo todo a la vez parece que está desbalanceado porque hay menos actividad de los profesores que de los alumnos.
 
 Lunes: Durante todo el día la mayoría es de los alumnos pero a las 23 hay un gran pico de profesores , en cambio los alumnos se conectan más durante el intervalo de 9 a 14.
