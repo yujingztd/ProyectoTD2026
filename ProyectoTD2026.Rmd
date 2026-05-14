@@ -324,8 +324,11 @@ perfil_alumnos %>%
     .groups = "drop"
   ) %>%
   knitr::kable(caption = "Caracterización media de cada perfil de estudiante.",
-               booktabs = TRUE)
+               booktabs = TRUE) %>% kable_styling(latex_options = "hold_position")
 ```
+
+\FloatBarrier
+
 
 La Tabla \@ref(tab:tabla-perfiles) recoge los valores medios de cada variable por perfil. A primera vista ya se aprecian diferencias claras entre los tres grupos, especialmente en el volumen de actividad y en los hábitos horarios.
 
@@ -353,6 +356,9 @@ perfil_alumnos %>%
 
 ```
 
+\FloatBarrier
+
+
 ```{r fig-volumen-actividad, fig.cap="Volumen de actividad por perfil de estudiante"}
 
 # Gráfico 2: variables de volumen
@@ -374,6 +380,9 @@ perfil_alumnos %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5))
 ```
+
+\FloatBarrier
+
 
 Las Figuras \@ref(fig:fig-habitos-conexion) y \@ref(fig:fig-volumen-actividad) nos ayudan a entender mejor los tres perfiles que hemos identificado.
 
