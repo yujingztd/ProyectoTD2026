@@ -505,11 +505,11 @@ No obstante, en la Figura \@ref(fig:figura-horas) podemos ver que los picos est�
 
 -   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
-Primero un vistazo muy básico para ver que días tienen más actividad y de forma más exacta que en la figura \@ref(fig:figura-dias)
+Primero un vistazo muy básico para ver que días tienen más actividad y de forma más exacta que en la Figura \@ref(fig:figura-dias)
 
 ```{r}
 dias = table(datos$Dia_Semana)
-sort(dias,decreasing = T)
+sort(dias,decreasing = T) %>% kable(col.names = c("Día de la semana", "Frecuencia"))
 ```
 
 Ahora observaremos los días más activos para alumnos y profesores
@@ -520,9 +520,9 @@ df_profesor = df_profesor_alumno %>% filter(clase == "profesor")
 dias_profesores = table(df_profesor$Dia_Semana)
 dias_alumnos = table(datos_alumnos$Dia_Semana)
 print("Profesores")
-sort(dias_profesores,decreasing = T)
+sort(dias_profesores,decreasing = T)  %>% kable(col.names = c("Día de la semana", "Frecuencia"))
 print("Alumnos")
-sort(dias_alumnos,decreasing = T)
+sort(dias_alumnos,decreasing = T)  %>% kable(col.names = c("Día de la semana", "Frecuencia"))
 
 ```
 
@@ -537,12 +537,15 @@ df_profesor_alumno %>% ggplot(aes(x = Dia_Semana)) + geom_bar(aes(fill = Dia_Sem
 
 
 ```
+
+\FloatBarrier
+
 Después de estas dos observaciones (el recuento y el barplot) podemos saber que la actividad no es muy similar, pero tiene una similitud que es la poca actividad los fines de semana.En los alumnos se observan ciertos picos como el miércoles, día en el cual habla clase u otros como el viernes por las entregas de tareas.
 
 Ahora es momento de observar la actividad en las diferentes horas.
 
 ```{r}
-sort(table(datos$Solo_Hora),decreasing = T)
+sort(table(datos$Solo_Hora),decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"))
 
 ```
 Analizando este recuento concluimos que las horas diurnas son más activas.
@@ -552,8 +555,8 @@ Después de esta observación compararemos la actividad en horas de los profesor
 ```{r}
 horas_profesores = table(df_profesor$Solo_Hora)
 horas_alumnos = table(datos_alumnos$Solo_Hora)
-sort(horas_profesores,decreasing = T)
-sort(horas_alumnos,decreasing = T)
+sort(horas_profesores,decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"))
+sort(horas_alumnos,decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"))
 
 ```
 
