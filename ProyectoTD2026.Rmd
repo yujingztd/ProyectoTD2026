@@ -36,6 +36,8 @@ header-includes:
 knitr::opts_chunk$set(warning=FALSE, echo=FALSE, fig.pos = 'H')
 ```
 
+\newpage
+
 # Introducción
 
 Cada vez que un estudiante abre el Aula Virtual, entrega una práctica o intenta un cuestionario, Moodle lo registra. La plataforma lleva la cuenta de todo: a qué hora te conectas, cuántas veces repites un cuestionario, si entregas con días de antelación o en el último momento. El resultado es un rastro digital del comportamiento de toda la clase a lo largo del curso.
@@ -567,5 +569,6 @@ Sábado: Es un día muy poco activo para los dos al ser fin de semana. En alumno
 
 Domingo: Otro día poco activo para los dos por ser el segundo día del fin de semana. Como en el anterior día en los alumnos el días esta balanceado porque las diferencias son mínimas entre las horas. En los profesores aparece un pequeño pico a las 20.
 
+\newpage
 
 # Conclusión
