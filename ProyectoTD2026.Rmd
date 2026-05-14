@@ -33,7 +33,7 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, , fig.pos = 'H')
 ```
 
 # Introducción
@@ -56,11 +56,14 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 -   ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
 
-Para responder a estas preguntas hemos utilizado R como herramienta principal. Concretamente, `tidyverse` y `dplyr` para manipular y transformar los datos y `ggplot2` para las visualizaciones.
+
+\newpage
+
+
+```{r, include=FALSE}
 
 # Carga de las librerías
 
-```{r, include=FALSE}
 if (!require(pacman)) install.packages("pacman")
 
 pacman::p_load(
@@ -75,9 +78,11 @@ pacman::p_load(
 )
 ```
 
-# Importación de los datos
 
 ```{r}
+
+# Importación de los datos
+
 datos <- read_csv("data/logs_moodle_anon.csv", 
     col_types = cols(Hora = col_datetime(format = "%d/%m/%y, %H:%M:%S")))
 
