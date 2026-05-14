@@ -146,6 +146,7 @@ knitr::kable(df_p,
 
 ```
 
+\FloatBarrier
 
 
 ## Datos cantidad de eventos
@@ -161,7 +162,7 @@ resumen_dias <- datos %>%
 knitr::kable(resumen_dias, 
              caption = "Total de interacciones por día de la semana.",
              col.names = c("Día de la semana", "Número de interacciones"),
-             booktabs =TRUE )
+             booktabs =TRUE ) %>% kable_styling(latex_options = "hold_position")
 ```
 
 Podemos también represneta esta información de forma gráfica, para que sea mucho más fácil de interpretar los resultados.
@@ -179,6 +180,9 @@ ggplot(datos, aes(x = Dia_Semana)) +
   theme(axis.text.x=element_text(angle=20)) +
   theme(legend.position = "bottom")
 ```
+
+\FloatBarrier
+
 
 ## Componentes más utilizados
 
