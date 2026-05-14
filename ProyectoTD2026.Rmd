@@ -563,6 +563,10 @@ Vamos a plasmar estos datos en un gráfico de barras.
  df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + geom_bar(aes(fill = factor(Solo_Hora)),color = "black")+ facet_grid(~clase)  + labs(title = "Actividad cada hora del día alumno~profesor",y = "Frecuencia",x = "Hora del día",fill = "Hora") + theme(axis.text.x=element_text(angle=23)) 
 
 ```
+
+\FloatBarrier
+
+
 Después de ambas observaciones ,los profesores y los alumnos son diurnos aunque en las horas más comunes de los profesores aparezca una hora nocturna, en la noche ninguno es muy activo aunque horas finales de la noche y primeras son más frecuentes en los profesores. Los alumnos son más frecuentes en horas lectivas.
 
 
@@ -578,6 +582,7 @@ while(i <= length(dias)){
 }
 
 ```
+
 Al hacerlo todo a la vez parece que está desbalanceado porque hay menos actividad de los profesores que de los alumnos.
 
 Lunes: Durante todo el día la mayoría es de los alumnos pero a las 23 hay un gran pico de profesores , en cambio los alumnos se conectan más durante el intervalo de 9 a 14.
