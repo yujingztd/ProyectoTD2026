@@ -128,15 +128,22 @@ datos <- datos %>%
   )
 ```
 
+
+\newpage
+
+
 # Análisis Exploratorio 
 
 ## Análisis de los datos
+
+En la siguiente Tabla \@ref(tab:tabla-datos) podemos ver un resumen de los datos que disponemos.
 
 ```{r tabla-datos}
 
 knitr::kable(df_p, 
              caption = "Análisis Datos",
-             booktabs =TRUE ) %>% kable_styling(latex_options = "scale_down")
+             booktabs =TRUE ) %>% kable_styling(latex_options = "scale_down") %>% kable_styling(latex_options = "hold_position")
+
 ```
 
 
