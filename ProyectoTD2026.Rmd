@@ -27,6 +27,9 @@ header-includes:
   - \fancyhf{}
   - \renewcommand{\headrulewidth}{0.5pt}
   - \renewcommand{\footrulewidth}{0.4pt}
+  - \usepackage{float}
+  - \usepackage{placeins}
+  - \providecommand{\pandocbounded}[1]{#1}
 ---
 
 ```{r setup, include=FALSE}
@@ -66,7 +69,9 @@ pacman::p_load(
   dplyr,
   lubridate,
   hms,
-  knitr
+  knitr,
+  float,
+  kableExtra
 )
 ```
 
@@ -119,6 +124,17 @@ datos <- datos %>%
 ```
 
 # Análisis Exploratorio 
+
+## Análisis de los datos
+
+```{r tabla-datos}
+
+knitr::kable(df_p, 
+             caption = "Análisis Datos",
+             booktabs =TRUE ) %>% kable_styling(latex_options = "scale_down")
+```
+
+
 
 ## Datos cantidad de eventos
 
@@ -521,3 +537,5 @@ Sábado: Es un día muy poco activo para los dos al ser fin de semana. En alumno
 
 Domingo: Otro día poco activo para los dos por ser el segundo día del fin de semana. Como en el anterior día en los alumnos el días esta balanceado porque las diferencias son mínimas entre las horas. En los profesores aparece un pequeño pico a las 20.
 
+
+# Conclusión
