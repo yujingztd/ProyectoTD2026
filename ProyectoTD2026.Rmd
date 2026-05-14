@@ -419,6 +419,8 @@ resumen_dist <- datos_dist %>% filter(distancia >= -5 & distancia <= 2) %>% coun
 ggplot(resumen_dist, aes(x = distancia, y = n)) + geom_col(fill = "lightblue", col = "black") + labs(title = "Actividad en torno a entregas y cuestionarios",x = "Días respecto a la entrega", y = "Número de interacciones") 
 ```
 
+\FloatBarrier
+
 ```{r}
 #Calculamos cuanto aumenta la actividad
 antes <- resumen_dist %>% filter(distancia %in% c(-5, -4, -3)) %>% summarise(media = mean(n)) %>% pull(media)
@@ -426,7 +428,6 @@ antes <- resumen_dist %>% filter(distancia %in% c(-5, -4, -3)) %>% summarise(med
 despues <- resumen_dist %>% filter(distancia %in% c(-2, -1, 0)) %>% summarise(media = mean(n)) %>% pull(media)
 
 aumento <- despues / antes
-aumento
 ```
 
 Para analizar si la actividad se concentra antes de entregas y cuestionarios, hemos estimado la fecha de entrega de cada actividad como el día con mayor número de interacciones registradas en los logs. A partir de esta referencia, hemos calculado la distancia en días respecto a dicha fecha.
