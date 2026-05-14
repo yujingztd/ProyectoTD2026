@@ -328,6 +328,7 @@ print("Alumnos")
 sort(dias_alumnos,decreasing = T)
 
 ```
+
 Podemos observar que la frecuencia de los alumnos es muy parecida a las frecuencia total
 
 
