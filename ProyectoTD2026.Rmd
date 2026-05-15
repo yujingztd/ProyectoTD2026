@@ -131,8 +131,6 @@ datos <- datos %>%
 ```
 
 
-\newpage
-
 
 # Análisis Exploratorio 
 
@@ -190,7 +188,6 @@ knitr::kable(top_componentes,
 Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componentes más recurrentes del Aula Virtual son: "Sistema", -que incluye, por ejemplo, hacer Login, Logout, mirar el panel de calificaciones-, "Tarea", "Cuestionario", "Carpeta" y "Asistencia".
 
 
-\newpage
 
 # Análisis profundo
 
@@ -594,6 +591,5 @@ Sábado: Es un día muy poco activo para los dos al ser fin de semana. En alumno
 
 Domingo: Otro día poco activo para los dos por ser el segundo día del fin de semana. Como en el anterior día en los alumnos el días esta balanceado porque las diferencias son mínimas entre las horas. En los profesores aparece un pequeño pico a las 20.
 
-\newpage
 
 # Conclusión
