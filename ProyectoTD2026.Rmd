@@ -58,6 +58,8 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 -   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
+-   ¿Desde dónde se conectan los usuarios? ¿Hay diversidad geográfica?
+
 
 \newpage
 
