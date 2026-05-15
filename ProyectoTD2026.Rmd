@@ -135,6 +135,50 @@ datos <- datos %>%
   )
 ```
 
+# Métodos
+
+## Datos utilizados
+
+El análisis se realizó a partir de los registros (logs) del Aula Virtual de la asignatura *Tractament de les Dades* correspondientes al curso 2024-2025. El conjunto de datos contiene más de 109.000 eventos generados por 87 usuarios entre enero y julio de 2025. Los datos fueron anonimizados previamente para preservar la privacidad de los estudiantes.
+
+Cada registro incluye información como la fecha y hora del evento, el componente utilizado dentro de Moodle, el nombre del evento, la dirección IP y el usuario asociado.
+
+## Procesamiento de los datos
+
+Los datos se importaron y procesaron en R utilizando principalmente los paquetes \texttt{tidyverse}, \texttt{lubridate} y \texttt{dplyr}. A partir de la variable de fecha y hora generamos nuevas variables temporales, como el día de la semana, el mes o la hora del día, que posteriormente utilizamos en el análisis.
+
+Además, diferenciamos a los profesores de los estudiantes a partir de ciertos eventos exclusivos de administración dentro de Moodle.
+
+## Análisis
+
+Se realizó un análisis descriptivo de la actividad registrada en la plataforma mediante tablas de frecuencias y representaciones gráficas. Se estudiaron:
+
+\begin{itemize}
+    \item la distribución de eventos por día y hora,
+    \item los componentes más utilizados,
+    \item la participación en tareas y cuestionarios,
+    \item la evolución temporal de la actividad.
+\end{itemize}
+
+Las visualizaciones se generaron con \texttt{ggplot2}.
+
+## Identificación de perfiles de estudiantes
+
+Para detectar patrones de comportamiento entre estudiantes se aplicó un algoritmo de clustering \textit{k-means}. Cada estudiante fue representado mediante cinco variables:
+
+\begin{itemize}
+    \item número total de clics,
+    \item días activos,
+    \item hora media de conexión,
+    \item proporción de actividad nocturna,
+    \item proporción de actividad en fin de semana.
+\end{itemize}
+
+Las variables fueron escaladas previamente y finalmente se seleccionó un modelo con \(k = 3\) grupos, ya que ofrecía un equilibrio razonable entre simplicidad e interpretabilidad.
+
+## Análisis geográfico
+
+Las direcciones IP más frecuentes se geolocalizaron utilizando los paquetes \texttt{locateip} y \texttt{tidygeocoder}. Finalmente, las localizaciones obtenidas se representaron sobre un mapa de Europa para analizar la distribución geográfica de las conexiones.
 
 
 # Análisis Exploratorio 
