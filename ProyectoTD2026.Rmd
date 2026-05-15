@@ -211,7 +211,7 @@ kable(resumen_actividades,
 ```
 
 
-```{r figura-mayor,fig.cap="Actividades con más participación", fig.width=8, fig.height=3.5}
+```{r figura-mayor,fig.cap="Actividades con más participación", fig.width=10, fig.height=3.5}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
