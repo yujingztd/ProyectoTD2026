@@ -644,8 +644,7 @@ ggplot() + geom_polygon(data = world,aes(long, lat, group = group),fill = "gray"
 
 \FloatBarrier
 
-
-La figura \@ref(fig:fig-ip-mapa) muestra las 20 ip más frecuentes de ciudades distintas.Las ip son prácticamente todas de España, sobretodo de la comunidad valenciana y pocas en Italia.
+La figura \@ref(fig:fig-ip-mapa) muestra la localización geográfica de las 20 direcciones IP más frecuentes procedentes de distintas ciudades. La mayoría de ellas se concentran en España, especialmente en la Comunidad Valenciana, mientras que solo unas pocas corresponden a Italia.
 
 # Conclusión
 
