@@ -42,7 +42,7 @@ knitr::opts_chunk$set(warning=FALSE, echo=FALSE)
 
 Cada vez que un estudiante abre el Aula Virtual, entrega una práctica o intenta un cuestionario, Moodle lo registra. La plataforma lleva la cuenta de todo: a qué hora te conectas, cuántas veces repites un cuestionario, si entregas con días de antelación o en el último momento. El resultado es un rastro digital del comportamiento de toda la clase a lo largo del curso.
 
-En este proyecto analizamos precisamente ese rastro. El conjunto de datos que tenemos recoge todos los eventos registrados en el Aula Virtual durante el curso 2024-2025 de la asignatura *Tractament de les Dades*, con los datos personales debidamente anonimizados. En total, más de 109.000 eventos generados por 87 usuarios a lo largo de casi seis meses de curso.
+En este proyecto analizamos precisamente ese rastro. El conjunto de datos que tenemos recoge todos los eventos registrados en el Aula Virtual durante el curso 2024-2025 de la asignatura *Tratamiento de los Datos*, con los datos personales debidamente anonimizados. En total, más de 109.000 eventos generados por 87 usuarios a lo largo de casi seis meses de curso.
 
 El objetivo no es solo describir los datos, sino responder preguntas que nos parecen interesantes sobre cómo estudiamos:
 
@@ -139,7 +139,7 @@ datos <- datos %>%
 
 ## Datos utilizados
 
-El análisis se realizó a partir de los registros (logs) del Aula Virtual de la asignatura *Tractament de les Dades* correspondientes al curso 2024-2025. El conjunto de datos contiene más de 109.000 eventos generados por 87 usuarios entre enero y julio de 2025. Los datos fueron anonimizados previamente para preservar la privacidad de los estudiantes.
+El análisis se realizó a partir de los registros (logs) del Aula Virtual de la asignatura *Tratamiento de los Datos* correspondientes al curso 2024-2025. El conjunto de datos contiene más de 109.000 eventos generados por 87 usuarios entre enero y julio de 2025. Los datos fueron anonimizados previamente para preservar la privacidad de los estudiantes.
 
 Cada registro incluye información como la fecha y hora del evento, el componente utilizado dentro de Moodle, el nombre del evento, la dirección IP y el usuario asociado.
 
@@ -692,7 +692,7 @@ La figura \@ref(fig:fig-ip-mapa) muestra la localización geográfica de las 20 
 
 # Conclusión
 
-Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tractament de les Dades*, hemos llegado a varias conclusiones sobre cómo nos comportamos los estudiantes a lo largo del curso.
+Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tratamiento de los Datos*, hemos llegado a varias conclusiones sobre cómo nos comportamos los estudiantes a lo largo del curso.
 
 La **participación entre actividades es muy desigual** (el Cuestionario Global supera los 4.600 registros frente a los apenas 600 de los cuestionarios P1-P6), y mediante clustering hemos identificado **tres perfiles de estudiantes**: uno mayoritario con patrón diurno y constante, otro con marcada actividad nocturna y un tercero de uso puntual. El hallazgo más claro es la **concentración de actividad antes de las entregas**, que se multiplica aproximadamente **por 7** en los días previos. Además, contra lo que esperábamos, el pico de actividad del curso no se da en mayo con los exámenes, sino en febrero al arrancar la asignatura, y se concentra en horario lectivo (9h y 11h) los días con clase o entregas (miércoles y viernes).
 
