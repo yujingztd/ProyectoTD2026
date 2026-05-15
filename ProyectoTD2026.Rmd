@@ -142,7 +142,7 @@ En la siguiente Tabla \@ref(tab:tabla-datos) podemos ver un resumen de los datos
 
 knitr::kable(df_p, 
              caption = "Análisis Datos",
-             booktabs =TRUE ) %>% kable_styling(latex_options = "scale_down") %>% kable_styling(latex_options = "hold_position")
+             booktabs =TRUE ) %>% kable_styling(latex_options = "scale_down") %>% kable_styling(latex_options = "HOLD_position")
 
 ```
 
@@ -182,7 +182,8 @@ top_componentes <- datos %>%
 knitr::kable(top_componentes, 
              caption = "Top 5 Componentes más utilizados",
              col.names = c("Componente", "Total_Clics"),
-             booktabs =TRUE ) %>% kable_styling(latex_options = "hold_position")
+             booktabs =TRUE ) %>% 
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componentes más recurrentes del Aula Virtual son: "Sistema" (que incluye, por ejemplo, hacer Login, Logout, mirar el panel de calificaciones), "Tarea", "Cuestionario", "Carpeta" y "Asistencia".
@@ -210,7 +211,7 @@ kable(resumen_actividades,
 ```
 
 
-```{r figura-participacion, fig.cap="Actividades con menor tasa de participación", fig.width=7, fig.height=5}
+```{r figura-participacion, fig.cap="Actividades con menor tasa de participación", fig.width=7, fig.height=5, fig.pos="H"}
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
@@ -311,7 +312,7 @@ perfil_alumnos %>%
     .groups = "drop"
   ) %>%
   knitr::kable(caption = "Caracterización media de cada perfil de estudiante.",
-               booktabs = TRUE) %>% kable_styling(latex_options = "hold_position")
+               booktabs = TRUE) %>% kable_styling(latex_options = "HOLD_position")
 ```
 
 
@@ -429,7 +430,7 @@ Cabe destacar que, al no disponer de las fechas oficiales de entrega, estas han 
 
 Primero analizamos la actividad a lo largo del curso.
 
-```{r figura-actividad, fig.cap="Actividad a lo largo del curso", fig.width=7, fig.height=4}
+```{r figura-actividad, fig.cap="Actividad a lo largo del curso", fig.width=7, fig.height=4, fig.pos="H"}
 datos_cuatri <- datos %>%
   filter(Solo_Fecha >= as.Date("2025-01-01") & Solo_Fecha <= as.Date("2025-07-31"))
 
@@ -453,7 +454,7 @@ Los datos revelan que el pico de conexión tuvo lugar en el mes de febrero, lo c
 
 Ahora pasamos a analizar cómo se distribuye la actividad a lo largo de las horas del día.
 
-```{r figura-horas, fig.cap="Distribución de la actividad según la hora del día", fig.width=7, fig.height=4}
+```{r figura-horas, fig.cap="Distribución de la actividad según la hora del día", fig.width=7, fig.height=3.5, fig.pos="H", out.extra=""}
 actividad_hora <- datos %>%
   count(Solo_Hora , name = "Total_Clics") %>%
   mutate(Periodo = ifelse(Solo_Hora  >= 22 | Solo_Hora  <= 6, "Noche (22h-06h)", "Día"))
@@ -471,42 +472,42 @@ ggplot(actividad_hora, aes(x = Solo_Hora , y = Total_Clics, fill = Periodo)) +
   theme(legend.position = "right")
 ```
 
-Al principio podríamos pensar que quizá haya más actividad durante la tarde, acercándonos ya a las horas de noche porque es muy típico de los alumnos intentar rescatar tareas o entregas que estuvieron procrastinando días y días.
-
-No obstante, en la Figura \@ref(fig:figura-horas) podemos ver que los picos están en las horas 9 y 11. Lo cual coincide con el horario habitual de clases.
+Aunque podríamos pensar que la actividad se concentra por la tarde-noche, asociada a alumnos rescatando tareas a última hora, la Figura \@ref(fig:figura-horas) muestra que los picos están en las horas 9 y 11, coincidiendo con el horario habitual de clases.
 
 
 ### Parte 2
 
 -   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
-Empezamos con un vistazo a la distribución exacta por día, complementando la Figura \@ref(fig:figura-dias)
+Empezamos con un vistazo a la distribución exacta por día, complementando la Figura \@ref(fig:figura-dias).
 
-```{r}
-dias = table(datos$Dia_Semana)
-sort(dias,decreasing = T) %>% kable(col.names = c("Día de la semana", "Frecuencia"))
-```
-
-Ahora observaremos los días más activos para alumnos y profesores.
-
-```{r}
-df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuario`%in% profesores,"profesor","alumno"))
+```{r tabla-dias}
+df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuario` %in% profesores, "profesor", "alumno"))
 df_profesor = df_profesor_alumno %>% filter(clase == "profesor")
-dias_profesores = table(df_profesor$Dia_Semana)
-dias_alumnos = table(datos_alumnos$Dia_Semana)
-print("Profesores")
-sort(dias_profesores,decreasing = T)  %>% kable(col.names = c("Día de la semana", "Frecuencia"))
-print("Alumnos")
-sort(dias_alumnos,decreasing = T)  %>% kable(col.names = c("Día de la semana", "Frecuencia"))
 
+tabla_dias <- data.frame(
+  Día = c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"),
+  Total = as.numeric(table(factor(datos$Dia_Semana, 
+                                  levels = c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")))),
+  Alumnos = as.numeric(table(factor(datos_alumnos$Dia_Semana, 
+                                    levels = c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")))),
+  Profesores = as.numeric(table(factor(df_profesor$Dia_Semana, 
+                                       levels = c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"))))
+)
+
+tabla_dias %>%
+  arrange(desc(Total)) %>%
+  kable(caption = "Frecuencia de actividad por día de la semana",
+        booktabs = TRUE) %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
-Podemos observar que la frecuencia de los alumnos es muy parecida a la frecuencia total.
-
+La Tabla \@ref(tab:tabla-dias) muestra que los alumnos siguen el mismo patrón que el total (con un pico claro el miércoles y el viernes, y poca actividad los fines de semana) mientras que los profesores muestran un perfil algo distinto: su día más activo es el viernes, seguido del martes.
 
 Ahora visualizaremos la diferencia de actividad entre los profesores y los alumnos, para tener otra perspectiva de los datos y sus diferencias
 
 ```{r fig-dias-comparativa, fig.cap="Actividad por día: alumnos vs profesores", fig.width=7, fig.height=3.5}
+
 df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuario`%in% profesores,"profesor","alumno"))
 df_profesor_alumno %>% ggplot(aes(x = Dia_Semana)) + 
   geom_bar(aes(fill = Dia_Semana),color = "black") + 
@@ -516,33 +517,33 @@ df_profesor_alumno %>% ggplot(aes(x = Dia_Semana)) +
        x = "Día de la semana", fill = "Día") + 
   theme(axis.text.x=element_text(angle = 23)) 
 
-
 ```
-
 
 Comparando el recuento y el gráfico, vemos que los patrones de alumnos y profesores no son idénticos, aunque comparten algo en común: la baja actividad durante el fin de semana. En los alumnos destacan dos picos: el miércoles, que coincide con el día de clase, y el viernes, probablemente asociado a las entregas de tareas.
 
 Ahora es momento de observar la actividad en las diferentes horas.
 
-```{r}
-sort(table(datos$Solo_Hora),decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"))
+```{r tabla-horas}
+tabla_horas <- data.frame(
+  Hora = 0:23,
+  Total = as.numeric(table(factor(datos$Solo_Hora, levels = 0:23))),
+  Alumnos = as.numeric(table(factor(datos_alumnos$Solo_Hora, levels = 0:23))),
+  Profesores = as.numeric(table(factor(df_profesor$Solo_Hora, levels = 0:23)))
+)
 
+tabla_horas %>% 
+  arrange(Hora) %>%
+  kable(caption = "Frecuencia de actividad por hora del día",
+        booktabs = TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 9)
 ```
-Analizando este recuento concluimos que las horas diurnas son más activas.
 
-Después de esta observación compararemos la actividad en horas de los profesores y alumnos.
+Las horas diurnas concentran la mayor parte de la actividad. Comparando alumnos y profesores, ambos siguen el mismo patrón general (picos a media mañana y tarde).
 
-```{r}
-horas_profesores = table(df_profesor$Solo_Hora)
-horas_alumnos = table(datos_alumnos$Solo_Hora)
-sort(horas_profesores,decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"))
-sort(horas_alumnos,decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"))
-
-```
 
 Vamos a plasmar estos datos en un gráfico de barras.
 
-```{r fig-horas-comparativa, fig.cap="Actividad por hora: alumnos vs profesores", fig.width=7, fig.height=3.5}
+```{r fig-horas-comparativa, fig.cap="Actividad por hora: alumnos vs profesores", fig.width=7, fig.height=3.5, fig.pos="H", out.extra=""}
 df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + 
   geom_bar(aes(fill = factor(Solo_Hora)), color = "black") + 
   facet_grid(~clase) + 
