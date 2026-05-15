@@ -645,7 +645,7 @@ Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tractam
 
 La **participación entre actividades es muy desigual** (el Cuestionario Global supera los 4.600 registros frente a los apenas 600 de los cuestionarios P1-P6), y mediante clustering hemos identificado **tres perfiles de estudiantes**: uno mayoritario con patrón diurno y constante, otro con marcada actividad nocturna y un tercero de uso puntual. El hallazgo más claro es la **concentración de actividad antes de las entregas**, que se multiplica aproximadamente **por 7** en los días previos. Además, contra lo que esperábamos, el pico de actividad del curso no se da en mayo con los exámenes, sino en febrero al arrancar la asignatura, y se concentra en horario lectivo (9h y 11h) los días con clase o entregas (miércoles y viernes).
 
-Como **limitaciones**, las fechas de entrega han sido aproximadas a partir de los picos de actividad, el número de clusters se eligió por interpretabilidad sin un método formal, y los datos miden la huella digital del estudiante, no su esfuerzo real en la asignatura.
+En cuanto a la **distribución geográfica de las conexiones**, la mayoría se concentra en Valencia y alrededores, lo que es coherente con el carácter presencial de la asignatura. También aparecen conexiones puntuales desde otras zonas de España y de Europa, destacando algunos puntos en Italia que probablemente correspondan a alumnos de Erasmus.
 
-Las **conexiones** son todas de Europa, la gran mayoría de ciudades cercanas a Valencia capital, otras son de otras partes de España. Lo sorprendente son los dos puntos en Italia que demuestra que la gran mayoría de alumnado de erasmus es de Italia.
+Como **limitaciones**, las fechas de entrega han sido aproximadas a partir de los picos de actividad, el número de clusters se eligió por interpretabilidad sin un método formal, y los datos miden la huella digital del estudiante, no su esfuerzo real en la asignatura.
 
