@@ -7,7 +7,7 @@ author:
   - "Joan Navarro Moya,"
   - "Javier Ortolá Medina,"
   - "Yu Jing Zhou"
-date: "`r Sys.Date()`"
+date: "Mayo 2026"
 output:
   bookdown::pdf_document2:
     fig_caption: yes
@@ -420,11 +420,11 @@ perfil_alumnos %>%
 
 Las Figuras \@ref(fig:fig-habitos-conexion) y \@ref(fig:fig-volumen-actividad) nos ayudan a entender mejor los tres perfiles que hemos identificado.
 
-El Perfil A, con 12 alumnos, reúne a los usuarios menos activos. Comparados con los demás, realizan menos clics y se conectan durante menos días. Además, apenas utilizan la plataforma por la noche o durante los fines de semana, por lo que parece que utilizan la plataforma de forma más puntual.
+El **Perfil A**, con 12 alumnos, reúne a los usuarios menos activos. Comparados con los demás, realizan menos clics y se conectan durante menos días. Además, apenas utilizan la plataforma por la noche o durante los fines de semana, por lo que parece que utilizan la plataforma de forma más puntual.
 
-El Perfil B reúne a 15 estudiantes con una actividad intermedia, aunque destacan por sus hábitos horarios. Es el grupo con más actividad nocturna: más del 20% de las interacciones se registran entre las 22h y las 6h, y además mantienen bastante actividad durante los fines de semana.
+El **Perfil B** reúne a 15 estudiantes con una actividad intermedia, aunque destacan por sus hábitos horarios. Es el grupo con más actividad nocturna: más del 20% de las interacciones se registran entre las 22h y las 6h, y además mantienen bastante actividad durante los fines de semana.
 
-El Perfil C es el grupo más numeroso, con 49 estudiantes, y es el perfil más habitual dentro de la clase. Su actividad se concentra en horario diurno y acumulan un gran número de días activos y de clics. En general, mantienen una interacción constante con el aula virtual durante el cuatrimestre.
+El **Perfil C** es el grupo más numeroso, con 49 estudiantes, y es el perfil más habitual dentro de la clase. Su actividad se concentra en horario diurno y acumulan un gran número de días activos y de clics. En general, mantienen una interacción constante con el aula virtual durante el cuatrimestre.
 
 Es importante tener en cuenta que estos perfiles reflejan patrones de comportamiento dentro de la plataforma, pero no muestran capacidad ni el esfuerzo real. Una menor actividad registrada no significa necesariamente un peor desempeño en la asignatura, sino simplemente una menor huella digital dentro del entorno virtual.
 
@@ -644,8 +644,7 @@ ggplot() + geom_polygon(data = world,aes(long, lat, group = group),fill = "gray"
 
 \FloatBarrier
 
-
-La figura \@ref(fig:fig-ip-mapa) muestra las 20 ip más frecuentes de ciudades distintas.Las ip son prácticamente todas de España, sobretodo de la comunidad valenciana y pocas en Italia.
+La figura \@ref(fig:fig-ip-mapa) muestra la localización geográfica de las 20 direcciones IP más frecuentes procedentes de distintas ciudades. La mayoría de ellas se concentran en España, especialmente en la Comunidad Valenciana, mientras que solo unas pocas corresponden a Italia.
 
 # Conclusión
 
