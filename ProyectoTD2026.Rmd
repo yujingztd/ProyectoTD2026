@@ -54,7 +54,7 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 -   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
 
--   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
+-   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Y alta? Si es así, ¿cuál?
 
 -   ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
 
@@ -211,24 +211,71 @@ kable(resumen_actividades,
 ```
 
 
-```{r figura-participacion, fig.cap="Actividades con menor tasa de participación", fig.width=7, fig.height=5, fig.pos="H"}
+```{r}
+library(ggplot2)
+library(dplyr)
+
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
-  arrange(n) %>%
-  head(15)
+  arrange(desc(n)) %>%
+  head(12)
 
 ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
-  geom_col() +
+  geom_col(show.legend = FALSE, width = 0.7, alpha = 0.85) + 
+  geom_text(aes(label = n), hjust = -0.2, size = 3.5, fontface = "bold", color = "grey30") +
   coord_flip() +
-  scale_fill_viridis_c() +
-  labs(title = "Actividades con menor participación",
-       x = "Actividad", 
-       y = "Participaciones",
-       fill = "Cantidad") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
+  scale_fill_viridis_c(option = "mako", direction = -1) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    title = "Actividades Mayor Tasa de Participación",
+    subtitle = "Top 10 de tareas y cuestionarios con más interacciones",
+    x = NULL, 
+    y = "Número total de participaciones",
+  ) +
+  theme_minimal(base_family = "sans") +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, color = "#2c3e50"),
+    plot.subtitle = element_text(size = 10, color = "#7f8c8d", margin = margin(b = 15)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    axis.text.y = element_text(size = 9, color = "#34495e"),
+    plot.margin = margin(20, 20, 20, 20)
+  )
 ```
+```{r}
+library(ggplot2)
+library(dplyr)
+
+bajo_uso <- datos %>%
+  filter(Componente %in% c("Tarea", "Cuestionario")) %>%
+  count(`Contexto del evento`) %>%
+  arrange((n)) %>%
+  head(12)
+
+ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
+  geom_col(show.legend = FALSE, width = 0.7, alpha = 0.85) + 
+  geom_text(aes(label = n), hjust = -0.2, size = 3.5, fontface = "bold", color = "grey30") +
+  coord_flip() +
+  scale_fill_viridis_c(option = "mako", direction = -1) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    title = "Actividades Menor Tasa de Participación",
+    subtitle = "Top 10 de tareas y cuestionarios con menos interacciones",
+    x = NULL, 
+    y = "Número total de participaciones",
+  ) +
+  theme_minimal(base_family = "sans") +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, color = "#2c3e50"),
+    plot.subtitle = element_text(size = 10, color = "#7f8c8d", margin = margin(b = 15)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    axis.text.y = element_text(size = 9, color = "#34495e"),
+    plot.margin = margin(20, 20, 20, 20)
+  )
+```
+
 
 
 \FloatBarrier
