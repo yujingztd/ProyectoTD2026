@@ -54,7 +54,7 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 -   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
 
--   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Y alta? Si es así, ¿cuál?
+-   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? ¿Y muy alta? Si es así, ¿cuál?
 
 -   ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
 
@@ -194,7 +194,7 @@ Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componente
 
 ## Tasa de participación
 
-- ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
+- ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? ¿Y muy alta? Si es así, ¿cuál?
 
 ```{r tabla-participacion}
 resumen_actividades <- datos %>%
@@ -241,7 +241,8 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
     plot.margin = margin(20, 20, 20, 20)
   )
 ```
-En esta tabla mostramos las 15 actividades más interactuadas, el nivel más alto de los 3. Cómo podemos observar, hay una actividad que resalta por tener el doble de interacciones que la segunda con mas. Esta es el Cuestionario Global, seguramente poque engloba todo el tema y sirve más para repasar o porque su valor en la nota seria muy elevado e importante para tener buena nota.
+
+En esta figura mostramos las 15 actividades más interactuadas, el nivel más alto de los 3. Como podemos observar, hay una actividad que resalta por tener el doble de interacciones que la segunda con más. Esta es el Cuestionario Global, seguramente porque engloba todo el tema y sirve más para repasar o porque su valor en la nota sería muy elevado e importante para tener buena nota.
 
 ```{r figura-menor, fig.cap="Actividades con menos participación", fig.width=8, fig.height=3.5}
 
@@ -273,7 +274,8 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
     plot.margin = margin(20, 20, 20, 20)
   )
 ```
-En esta tabla mostramos las 15 actividades meonos interactuadas, el nivel mas bajpo de los 3. Cómo podemos observar, hay en su mayoria 2 tipos de actividades, las que se han borrado y por ello no tienen casi actividad, y las que no se han boorado pero tampoco tienen casi actividad seguramente porque solo tendría acceso a ellas el profesor. Por otro lado, a partir de la onceava actividad son todas cuestionarios de prácticas, lo que nos indica que los estudiantes no tenian mucho interés en hacerlos o su valor en la nota era muy bajo
+
+En esta figura mostramos las 15 actividades con menos interacciones, el nivel más bajo de los 3. Como podemos observar, hay en su mayoría 2 tipos de actividades: las que se han borrado y por ello apenas tienen actividad, y las que no se han borrado pero tampoco tienen casi actividad, seguramente porque solo tendría acceso a ellas el profesor. Por otro lado, a partir de la undécima actividad son todas cuestionarios de prácticas, lo que nos indica que los estudiantes no tenían mucho interés en hacerlos o que su valor en la nota era muy bajo.
 
 \FloatBarrier
 
@@ -423,7 +425,7 @@ Es importante tener en cuenta que estos perfiles reflejan patrones de comportami
 
 ## Actividad en torno a entregas
 
--   La actividad (Grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
+-   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
 
 ```{r}
 # Aproximamos la fecha de entrega según el pico de uso
@@ -609,7 +611,7 @@ Tanto profesores como alumnos son claramente diurnos. La actividad nocturna es e
 
 # Conclusión
 
-Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tratamiento de los Datos*, hemos llegado a varias conclusiones sobre cómo nos comportamos los estudiantes a lo largo del curso.
+Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tractament de les Dades*, hemos llegado a varias conclusiones sobre cómo nos comportamos los estudiantes a lo largo del curso.
 
 La **participación entre actividades es muy desigual** (el Cuestionario Global supera los 4.600 registros frente a los apenas 600 de los cuestionarios P1-P6), y mediante clustering hemos identificado **tres perfiles de estudiantes**: uno mayoritario con patrón diurno y constante, otro con marcada actividad nocturna y un tercero de uso puntual. El hallazgo más claro es la **concentración de actividad antes de las entregas**, que se multiplica aproximadamente **por 7** en los días previos. Además, contra lo que esperábamos, el pico de actividad del curso no se da en mayo con los exámenes, sino en febrero al arrancar la asignatura, y se concentra en horario lectivo (9h y 11h) los días con clase o entregas (miércoles y viernes).
 
