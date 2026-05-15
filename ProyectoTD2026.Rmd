@@ -76,7 +76,10 @@ pacman::p_load(
   hms,
   knitr,
   float,
-  kableExtra
+  kableExtra,
+  locateip,
+  maps,
+  tidygeocoder
 )
 ```
 
@@ -606,7 +609,35 @@ df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) +
 
 Como puede observarse en la Figura \@ref(fig:fig-horas-comparativa), tanto profesores como alumnos son claramente diurnos. La actividad nocturna es escasa en ambos casos, aunque los profesores se conectan algo más en las primeras y últimas horas de la noche. Los alumnos, en cambio, se concentran sobre todo en horario lectivo.
 
+- ¿ Dónde están las ip más frecuentes de ciudades distintas ?
 
+Graficamos las ip en un mapa centrado en europa:
+```{r message=FALSE, warning=FALSE}
+ips_profesores = unique(datos$`Dirección IP`)
+ips = unique(datos$`Dirección IP`)
+df_ips = table(datos$`Dirección IP`) |>as.data.frame() |> arrange(desc(Freq))
+ciudades = c()
+i = 1
+while(length(ciudades) < 20){
+    lugar = locate_ip(df_ips[i,1])
+     if (!is.null(lugar) && !is.null(lugar$city)){
+       if (!(lugar$city %in% ciudades)){
+      ciudades = c(ciudades,lugar$city)
+    }
+     }
+  Sys.sleep(2)
+  i = i + 1
+}
+ciudad = data.frame(ciudad = ciudades)
+coordenadas = geocode(ciudad, ciudad, method = "osm")
+```
+
+```{r fig-ip-mapa,fig.cap=" Las ip más frecuentes"}
+world = map_data("world")
+ggplot() + geom_polygon(data = world,aes(long, lat, group = group),fill = "gray",color = "white") + geom_point(data = coordenadas,aes(x = long, y = lat),color = "black",size = 3,alpha = 0.7) + coord_fixed(xlim = c(-8, 18), ylim = c(36, 46)) + labs(title = "Mapa de IP",subtitle = "Las 20 ip más frecuentes", x = "Longitud",y = "Latitud")
+```
+
+La figura \@ref(fig:fig-ip-mapa) muestra las 20 ip más frecuentes de ciudades distintas.Las ip son prácticamente todas de España, sobretodo de la comunidad valenciana y pocas en Italia.
 
 # Conclusión
 
@@ -615,3 +646,6 @@ Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tractam
 La **participación entre actividades es muy desigual** (el Cuestionario Global supera los 4.600 registros frente a los apenas 600 de los cuestionarios P1-P6), y mediante clustering hemos identificado **tres perfiles de estudiantes**: uno mayoritario con patrón diurno y constante, otro con marcada actividad nocturna y un tercero de uso puntual. El hallazgo más claro es la **concentración de actividad antes de las entregas**, que se multiplica aproximadamente **por 7** en los días previos. Además, contra lo que esperábamos, el pico de actividad del curso no se da en mayo con los exámenes, sino en febrero al arrancar la asignatura, y se concentra en horario lectivo (9h y 11h) los días con clase o entregas (miércoles y viernes).
 
 Como **limitaciones**, las fechas de entrega han sido aproximadas a partir de los picos de actividad, el número de clusters se eligió por interpretabilidad sin un método formal, y los datos miden la huella digital del estudiante, no su esfuerzo real en la asignatura.
+
+Las **conexiones** son todas de Europa, la gran mayoría de ciudades cercanas a Valencia capital, otras son de otras partes de España. Lo sorprendente son los dos puntos en Italia que demuestra que la gran mayoría de alumnado de erasmus es de Italia.
+
