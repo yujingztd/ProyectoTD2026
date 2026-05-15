@@ -207,7 +207,9 @@ resumen_actividades <- datos %>%
 kable(resumen_actividades, 
       caption = "Total de participaciones por actividad (Cuestionarios y Tareas).",
       col.names = c("Actividad", "Número de participaciones"),
-      booktabs = TRUE) %>% kable_styling(latex_options = "scale_down") %>% kable_styling(latex_options = "hold_position") 
+      booktabs = TRUE) %>%
+  kable_styling(font_size = 6, 
+                latex_options = "HOLD_position")
 ```
 
 \FloatBarrier
