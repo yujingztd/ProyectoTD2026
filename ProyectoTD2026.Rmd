@@ -608,3 +608,9 @@ Tanto profesores como alumnos son claramente diurnos. La actividad nocturna es e
 
 
 # Conclusión
+
+Tras analizar más de 109.000 eventos del Aula Virtual de la asignatura *Tratamiento de los Datos*, hemos llegado a varias conclusiones sobre cómo nos comportamos los estudiantes a lo largo del curso.
+
+La **participación entre actividades es muy desigual** (el Cuestionario Global supera los 4.600 registros frente a los apenas 600 de los cuestionarios P1-P6), y mediante clustering hemos identificado **tres perfiles de estudiantes**: uno mayoritario con patrón diurno y constante, otro con marcada actividad nocturna y un tercero de uso puntual. El hallazgo más claro es la **concentración de actividad antes de las entregas**, que se multiplica aproximadamente **por 7** en los días previos. Además, contra lo que esperábamos, el pico de actividad del curso no se da en mayo con los exámenes, sino en febrero al arrancar la asignatura, y se concentra en horario lectivo (9h y 11h) los días con clase o entregas (miércoles y viernes).
+
+Como **limitaciones**, las fechas de entrega han sido aproximadas a partir de los picos de actividad, el número de clusters se eligió por interpretabilidad sin un método formal, y los datos miden la huella digital del estudiante, no su esfuerzo real en la asignatura.
