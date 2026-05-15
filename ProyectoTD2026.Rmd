@@ -2,7 +2,7 @@
 title: "Mini Proyecto 2026. Análisis de los logs de la asignatura en Aula Virtual durante el curso 2024-2025"
 author: 
   - "Grupo G:"
-  - "Narea Galera Navarro,"
+  - "Nerea Galera Navarro,"
   - "Nicolás Hellín Sánchez,"
   - "Joan Navarro Moya,"
   - "Javier Ortolá Medina,"
@@ -611,6 +611,8 @@ df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) +
 
 Como puede observarse en la Figura \@ref(fig:fig-horas-comparativa), tanto profesores como alumnos son claramente diurnos. La actividad nocturna es escasa en ambos casos, aunque los profesores se conectan algo más en las primeras y últimas horas de la noche. Los alumnos, en cambio, se concentran sobre todo en horario lectivo.
 
+## Diversidad geográfica
+
 - ¿ Dónde están las ip más frecuentes de ciudades distintas ?
 
 Graficamos las ip en un mapa centrado en europa:
@@ -634,7 +636,7 @@ ciudad = data.frame(ciudad = ciudades)
 coordenadas = geocode(ciudad, ciudad, method = "osm")
 ```
 
-```{r fig-ip-mapa,fig.cap=" Las ip más frecuentes"}
+```{r fig-ip-mapa,fig.cap=" Las ip más frecuentes", fig.width=5, fig.height=3.5, fig.pos="H", out.extra=""}
 world = map_data("world")
 ggplot() + geom_polygon(data = world,aes(long, lat, group = group),fill = "gray",color = "white") + geom_point(data = coordenadas,aes(x = long, y = lat),color = "black",size = 3,alpha = 0.7) + coord_fixed(xlim = c(-8, 18), ylim = c(36, 46)) + labs(title = "Mapa de IP",subtitle = "Las 20 ip más frecuentes", x = "Longitud",y = "Latitud")
 ```
