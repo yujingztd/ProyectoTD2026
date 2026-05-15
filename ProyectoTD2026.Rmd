@@ -155,19 +155,7 @@ knitr::kable(df_p,
 
 Para tener una primera visión de los hábitos de conexión, hemos agrupado la cantidad total de clics que hacen los estudiantes según el día de la semana.
 
-Como se puede observar en la Tabla \@ref(tab:tabla-dias), la actividad de los usuarios varía dependiendo de si nos encontramos a principios, a mediados o a finales de la semana.
-
-```{r tabla-dias}
-resumen_dias <- datos %>%
-  count(Dia_Semana, name = "Total_Clics")
-
-knitr::kable(resumen_dias, 
-             caption = "Total de interacciones por día de la semana.",
-             col.names = c("Día de la semana", "Número de interacciones"),
-             booktabs =TRUE ) %>% kable_styling(latex_options = "hold_position")
-```
-
-Podemos también represneta esta información de forma gráfica, para que sea mucho más fácil de interpretar los resultados.
+Represneta esta información de forma gráfica, para que sea mucho más fácil de interpretar los resultados.
 
 En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics que hay según el día de la semana.
 
