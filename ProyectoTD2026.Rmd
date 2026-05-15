@@ -616,6 +616,7 @@ Como puede observarse en la Figura \@ref(fig:fig-horas-comparativa), tanto profe
 - ¿ Dónde están las ip más frecuentes de ciudades distintas ?
 
 Graficamos las ip en un mapa centrado en europa:
+
 ```{r message=FALSE, warning=FALSE}
 ips_profesores = unique(datos$`Dirección IP`)
 ips = unique(datos$`Dirección IP`)
@@ -640,6 +641,9 @@ coordenadas = geocode(ciudad, ciudad, method = "osm")
 world = map_data("world")
 ggplot() + geom_polygon(data = world,aes(long, lat, group = group),fill = "gray",color = "white") + geom_point(data = coordenadas,aes(x = long, y = lat),color = "black",size = 3,alpha = 0.7) + coord_fixed(xlim = c(-8, 18), ylim = c(36, 46)) + labs(title = "Mapa de IP",subtitle = "Las 20 ip más frecuentes", x = "Longitud",y = "Latitud")
 ```
+
+\FloatBarrier
+
 
 La figura \@ref(fig:fig-ip-mapa) muestra las 20 ip más frecuentes de ciudades distintas.Las ip son prácticamente todas de España, sobretodo de la comunidad valenciana y pocas en Italia.
 
