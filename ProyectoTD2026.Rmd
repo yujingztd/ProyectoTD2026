@@ -52,7 +52,7 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 -   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
--   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
+-   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es así, ¿cuánto aumenta?
 
 -   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? ¿Y muy alta? Si es así, ¿cuál?
 
@@ -209,7 +209,8 @@ kable(resumen_actividades,
   kable_styling(font_size = 7, 
                 latex_options = "HOLD_position")
 ```
-Recopilamos la información de todas las actividades y el número de veces que interactúan en ella los alumnos y profesores, donde podemos observar una distinción de 3 niveles de número de participaciones.
+
+En la Tabla \@ref(tab:tabla-participacion) recopilamos la información de todas las actividades y el número de veces que interactúan en ellas los alumnos y profesores, donde podemos observar una distinción de 3 niveles de participación.
 
 ```{r figura-mayor,fig.cap="Actividades con más participación", fig.width=10, fig.height=3.5}
 
@@ -242,7 +243,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
   )
 ```
 
-En esta figura mostramos las 15 actividades más interactuadas, el nivel más alto de los 3. Como podemos observar, hay una actividad que resalta por tener el doble de interacciones que la segunda con más. Esta es el Cuestionario Global, seguramente porque engloba todo el tema y sirve más para repasar o porque su valor en la nota sería muy elevado e importante para tener buena nota.
+En la Figura \@ref(fig:figura-mayor) mostramos las 15 actividades más interactuadas, el nivel más alto de los 3. Como podemos observar, hay una actividad que resalta por tener el doble de interacciones que la segunda con más. Esta es el Cuestionario Global, seguramente porque engloba todo el tema y sirve más para repasar o porque su valor en la nota sería muy elevado e importante para tener buena nota.
 
 ```{r figura-menor, fig.cap="Actividades con menos participación", fig.width=8, fig.height=3.5}
 
@@ -275,7 +276,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
   )
 ```
 
-En esta figura mostramos las 15 actividades con menos interacciones, el nivel más bajo de los 3. Como podemos observar, hay en su mayoría 2 tipos de actividades: las que se han borrado y por ello apenas tienen actividad, y las que no se han borrado pero tampoco tienen casi actividad, seguramente porque solo tendría acceso a ellas el profesor. Por otro lado, a partir de la undécima actividad son todas cuestionarios de prácticas, lo que nos indica que los estudiantes no tenían mucho interés en hacerlos o que su valor en la nota era muy bajo.
+En la Figura \@ref(fig:figura-menor) mostramos las 15 actividades con menos interacciones, el nivel más bajo de los 3. Como podemos observar, hay en su mayoría 2 tipos de actividades: las que se han borrado y por ello apenas tienen actividad, y las que no se han borrado pero tampoco tienen casi actividad, seguramente porque solo tendría acceso a ellas el profesor. Por otro lado, a partir de la undécima actividad son todas cuestionarios de prácticas, lo que nos indica que los estudiantes no tenían mucho interés en hacerlos o que su valor en la nota era muy bajo.
 
 \FloatBarrier
 
@@ -425,7 +426,7 @@ Es importante tener en cuenta que estos perfiles reflejan patrones de comportami
 
 ## Actividad en torno a entregas
 
--   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
+-   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es así, ¿cuánto aumenta?
 
 ```{r}
 # Aproximamos la fecha de entrega según el pico de uso
@@ -554,7 +555,7 @@ tabla_dias %>%
 
 La Tabla \@ref(tab:tabla-dias) muestra que los alumnos siguen el mismo patrón que el total (con un pico claro el miércoles y el viernes, y poca actividad los fines de semana) mientras que los profesores muestran un perfil algo distinto: su día más activo es el viernes, seguido del martes.
 
-Ahora visualizaremos la diferencia de actividad entre los profesores y los alumnos, para tener otra perspectiva de los datos y sus diferencias
+La Figura \@ref(fig:fig-dias-comparativa) visualiza la diferencia de actividad entre profesores y alumnos, ofreciéndonos otra perspectiva de los datos.
 
 ```{r fig-dias-comparativa, fig.cap="Actividad por día: alumnos vs profesores", fig.width=7, fig.height=3.5}
 
@@ -603,7 +604,7 @@ df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) +
 ```
 
 
-Tanto profesores como alumnos son claramente diurnos. La actividad nocturna es escasa en ambos casos, aunque los profesores se conectan algo más en las primeras y últimas horas de la noche. Los alumnos, en cambio, se concentran sobre todo en horario lectivo.
+Como puede observarse en la Figura \@ref(fig:fig-horas-comparativa), tanto profesores como alumnos son claramente diurnos. La actividad nocturna es escasa en ambos casos, aunque los profesores se conectan algo más en las primeras y últimas horas de la noche. Los alumnos, en cambio, se concentran sobre todo en horario lectivo.
 
 
 
