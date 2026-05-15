@@ -209,7 +209,7 @@ kable(resumen_actividades,
   kable_styling(font_size = 7, 
                 latex_options = "HOLD_position")
 ```
-
+Recopilamos la información de todas las actividades y el número de veces que interactúan en ella los alumnos y profesores, donde podemos observar una distinción de 3 niveles de número de participaciones.
 
 ```{r figura-mayor,fig.cap="Actividades con más participación", fig.width=10, fig.height=3.5}
 
@@ -217,7 +217,7 @@ bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
   arrange(desc(n)) %>%
-  head(12)
+  head(15)
 
 ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
   geom_col(show.legend = FALSE, width = 0.7, alpha = 0.85) + 
@@ -241,7 +241,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
     plot.margin = margin(20, 20, 20, 20)
   )
 ```
-
+En esta tabla mostramos las 15 actividades más interactuadas, el nivel más alto de los 3. Cómo podemos observar, hay una actividad que resalta por tener el doble de interacciones que la segunda con mas. Esta es el Cuestionario Global, seguramente poque engloba todo el tema y sirve más para repasar o porque su valor en la nota seria muy elevado e importante para tener buena nota.
 
 ```{r figura-menor, fig.cap="Actividades con menos participación", fig.width=8, fig.height=3.5}
 
@@ -249,7 +249,7 @@ bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
   arrange((n)) %>%
-  head(12)
+  head(15)
 
 ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
   geom_col(show.legend = FALSE, width = 0.7, alpha = 0.85) + 
@@ -273,8 +273,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
     plot.margin = margin(20, 20, 20, 20)
   )
 ```
-
-
+En esta tabla mostramos las 15 actividades meonos interactuadas, el nivel mas bajpo de los 3. Cómo podemos observar, hay en su mayoria 2 tipos de actividades, las que se han borrado y por ello no tienen casi actividad, y las que no se han boorado pero tampoco tienen casi actividad seguramente porque solo tendría acceso a ellas el profesor. Por otro lado, a partir de la onceava actividad son todas cuestionarios de prácticas, lo que nos indica que los estudiantes no tenian mucho interés en hacerlos o su valor en la nota era muy bajo
 
 \FloatBarrier
 
