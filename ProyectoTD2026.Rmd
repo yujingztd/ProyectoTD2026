@@ -159,7 +159,7 @@ Represneta esta información de forma gráfica, para que sea mucho más fácil d
 
 En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics que hay según el día de la semana.
 
-```{r figura-dias, fig.cap="Eventos por día de la semana"}
+```{r figura-dias, fig.cap="Eventos por día de la semana", fig.width=3}
 ggplot(datos, aes(x = Dia_Semana)) +
   geom_bar(aes(fill = Dia_Semana), color = "black", alpha = 0.8) +
   labs(
@@ -198,7 +198,7 @@ Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componente
 
 - ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
-```{r tabla-participacion}
+```{r tabla-participacion, fig.width=3}
 resumen_actividades <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`, name = "Total_Participaciones") %>%
@@ -212,7 +212,7 @@ kable(resumen_actividades,
 
 \FloatBarrier
 
-```{r figura-participacion, fig.cap="Eventos por día de la semana", fig.pos="H"}
+```{r figura-participacion, fig.cap="Eventos por día de la semana", fig.pos="H", fig.width=3}
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
@@ -320,7 +320,7 @@ perfil_alumnos %>%
 
 La Tabla \@ref(tab:tabla-perfiles) recoge los valores medios de cada variable por perfil. A primera vista ya se aprecian diferencias claras entre los tres grupos, especialmente en el volumen de actividad y en los hábitos horarios.
 
-```{r fig-habitos-conexion, fig.cap="Hábitos de conexión por perfil de estudiante"}
+```{r fig-habitos-conexion, fig.cap="Hábitos de conexión por perfil de estudiante", fig.width=3}
 
 # Gráfico 1: variables de proporción 
 
@@ -438,7 +438,7 @@ Cabe destacar que, al no disponer de las fechas oficiales de entrega, estas han 
 
 Primero analizamos la actividad a lo largo del curso.
 
-```{r figura-actividad, fig.cap="Actividad a lo largo del curso"}
+```{r figura-actividad, fig.cap="Actividad a lo largo del curso", fig.width=3}
 datos_cuatri <- datos %>%
   filter(Solo_Fecha >= as.Date("2025-01-01") & Solo_Fecha <= as.Date("2025-07-31"))
 
@@ -464,7 +464,7 @@ Los datos revelan que el pico de conexión tuvo lugar en el mes de febrero, que 
 
 Ahora pasamos a analizar la actividad a durante la noche.
 
-```{r figura-horas, fig.cap="Distribución de la actividad según la hora del día"}
+```{r figura-horas, fig.cap="Distribución de la actividad según la hora del día", fig.width=3}
 actividad_hora <- datos %>%
   count(Solo_Hora , name = "Total_Clics") %>%
   mutate(Periodo = ifelse(Solo_Hora  >= 22 | Solo_Hora  <= 6, "Noche (22h-06h)", "Día"))
