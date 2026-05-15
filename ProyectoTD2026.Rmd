@@ -48,15 +48,15 @@ El objetivo no es solo describir los datos, sino responder preguntas que nos par
 
 **Listado de Preguntas**
 
--   ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
-
--   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
-
--   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es así, ¿cuánto aumenta?
-
 -   ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? ¿Y muy alta? Si es así, ¿cuál?
 
 -   ¿Existen perfiles distintos de estudiantes según su forma de usar la plataforma?
+
+-   ¿La actividad (grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es así, ¿cuánto aumenta?
+
+-   ¿Cómo evoluciona la actividad de los estudiantes a medida que avanza el cuatrimestre? ¿Hay picos de actividad durante la noche o en épocas de exámenes?
+
+-   ¿Cómo cambia la actividad según el día de la semana y la hora del día? ¿Estudian los fines de semana?
 
 
 \newpage
@@ -212,7 +212,7 @@ kable(resumen_actividades,
 
 En la Tabla \@ref(tab:tabla-participacion) recopilamos la información de todas las actividades y el número de veces que interactúan en ellas los alumnos y profesores, donde podemos observar una distinción de 3 niveles de participación.
 
-```{r figura-mayor,fig.cap="Actividades con más participación", fig.width=10, fig.height=3.5}
+```{r figura-mayor,fig.cap="Actividades con más participación", fig.pos="H", fig.width=10, fig.height=3.5, out.width="100%"}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
@@ -245,7 +245,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
 
 En la Figura \@ref(fig:figura-mayor) mostramos las 15 actividades más interactuadas, el nivel más alto de los 3. Como podemos observar, hay una actividad que resalta por tener el doble de interacciones que la segunda con más. Esta es el Cuestionario Global, seguramente porque engloba todo el tema y sirve más para repasar o porque su valor en la nota sería muy elevado e importante para tener buena nota.
 
-```{r figura-menor, fig.cap="Actividades con menos participación", fig.width=8, fig.height=3.5}
+```{r figura-menor, fig.cap="Actividades con menos participación", fig.pos="H", fig.width=8, fig.height=3.5, out.width="100%"}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
@@ -426,7 +426,7 @@ Es importante tener en cuenta que estos perfiles reflejan patrones de comportami
 
 ## Actividad en torno a entregas
 
--   La actividad (grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es así, ¿cuánto aumenta?
+-   ¿La actividad (grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es así, ¿cuánto aumenta?
 
 ```{r}
 # Aproximamos la fecha de entrega según el pico de uso
