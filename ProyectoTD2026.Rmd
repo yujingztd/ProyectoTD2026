@@ -174,7 +174,7 @@ ggplot(datos, aes(x = Dia_Semana)) +
 
 ## Componentes más utilizados
 
-```{r tabla-componentes}
+```{r tabla-componentes, fig.cap="Componente más usado"}
 top_componentes <- datos %>%
   count(Componente, name = "Total_Clics", sort = TRUE) %>%
   head(5) # Mostramos solo el Top 5 para no saturar el PDF
@@ -211,7 +211,7 @@ kable(resumen_actividades,
 ```
 
 
-```{r figura-mayor}
+```{r figura-mayor, fig.width=6, fig.height=3.5}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
@@ -243,7 +243,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
 ```
 
 
-```{r figura-menor}
+```{r figura-menor, fig.width=6, fig.height=3.5}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
