@@ -196,7 +196,7 @@ Como podemos observar en la Tabla \@ref(tab:tabla-componentes), los 5 componente
 
 - ¿Hay alguna práctica o cuestionario con una tasa de participación muy baja? Si es así, ¿cuál?
 
-```{r tabla-participacion, fig.width=3}
+```{r tabla-participacion}
 resumen_actividades <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`, name = "Total_Participaciones") %>%
@@ -206,14 +206,12 @@ kable(resumen_actividades,
       caption = "Total de participaciones por actividad (Cuestionarios y Tareas).",
       col.names = c("Actividad", "Número de participaciones"),
       booktabs = TRUE) %>%
-  kable_styling(font_size = 6, 
+  kable_styling(font_size = 7, 
                 latex_options = "HOLD_position")
 ```
 
 
-```{r}
-library(ggplot2)
-library(dplyr)
+```{r figura-mayor}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
@@ -243,9 +241,9 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
     plot.margin = margin(20, 20, 20, 20)
   )
 ```
-```{r}
-library(ggplot2)
-library(dplyr)
+
+
+```{r figura-menor}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
