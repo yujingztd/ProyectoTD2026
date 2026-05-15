@@ -33,7 +33,7 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(warning=FALSE, echo=FALSE, fig.pos = 'H')
+knitr::opts_chunk$set(warning=FALSE, echo=FALSE)
 ```
 
 \newpage
@@ -157,7 +157,7 @@ Representamos esta información gráficamente para facilitar la interpretación.
 
 En la Figura \@ref(fig:figura-dias) se muestra la cantidad de clics registrados según el día de la semana.
 
-```{r figura-dias, fig.cap="Eventos por día de la semana", fig.width=3}
+```{r figura-dias, fig.cap="Eventos por día de la semana", fig.width=6, fig.height=3.5}
 ggplot(datos, aes(x = Dia_Semana)) +
   geom_bar(aes(fill = Dia_Semana), color = "black", alpha = 0.8) +
   labs(
@@ -166,7 +166,7 @@ ggplot(datos, aes(x = Dia_Semana)) +
     y = "Cantidad de eventos (Clics)") +
   theme_minimal() +
   theme(axis.text.x=element_text(angle=20)) +
-  theme(legend.position = "bottom")
+  theme(legend.position = "none")
 ```
 
 \FloatBarrier
@@ -209,24 +209,24 @@ kable(resumen_actividades,
                 latex_options = "HOLD_position")
 ```
 
-\FloatBarrier
 
-```{r figura-participacion, fig.cap="Eventos por día de la semana", fig.pos="H", fig.width=3}
+```{r figura-participacion, fig.cap="Actividades con menor tasa de participación", fig.width=7, fig.height=5}
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
   count(`Contexto del evento`) %>%
   arrange(n) %>%
-  head(30)
+  head(15)
 
 ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
   geom_col() +
   coord_flip() +
   scale_fill_viridis_c() +
-  labs(title = "Actividades con Menor Tasa de Participación",
+  labs(title = "Actividades con menor participación",
        x = "Actividad", 
        y = "Participaciones",
        fill = "Cantidad") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 
@@ -314,12 +314,10 @@ perfil_alumnos %>%
                booktabs = TRUE) %>% kable_styling(latex_options = "hold_position")
 ```
 
-\FloatBarrier
-
 
 La Tabla \@ref(tab:tabla-perfiles) recoge los valores medios de cada variable por perfil. A primera vista ya se aprecian diferencias claras entre los tres grupos, especialmente en el volumen de actividad y en los hábitos horarios.
 
-```{r fig-habitos-conexion, fig.cap="Hábitos de conexión por perfil de estudiante", fig.width=3}
+```{r fig-habitos-conexion, fig.cap="Hábitos de conexión por perfil de estudiante", fig.width=6, fig.height=3.5}
 
 # Gráfico 1: variables de proporción 
 
@@ -343,10 +341,8 @@ perfil_alumnos %>%
 
 ```
 
-\FloatBarrier
 
-
-```{r fig-volumen-actividad, fig.cap="Volumen de actividad por perfil de estudiante"}
+```{r fig-volumen-actividad, fig.cap="Volumen de actividad por perfil de estudiante", fig.width=6, fig.height=3.5}
 
 # Gráfico 2: variables de volumen
 
@@ -368,8 +364,6 @@ perfil_alumnos %>%
         plot.title = element_text(hjust = 0.5))
 ```
 
-\FloatBarrier
-
 
 Las Figuras \@ref(fig:fig-habitos-conexion) y \@ref(fig:fig-volumen-actividad) nos ayudan a entender mejor los tres perfiles que hemos identificado.
 
@@ -384,7 +378,7 @@ Es importante tener en cuenta que estos perfiles reflejan patrones de comportami
 
 ## Actividad en torno a entregas
 
--   La actividad (Grupal y/o individual) se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
+-   La actividad (Grupal y/o individual) ¿se concentra en los días previos a entregas y cuestionarios? Si es que sí, ¿cuánto aumenta?
 
 ```{r}
 # Aproximamos la fecha de entrega según el pico de uso
@@ -405,8 +399,6 @@ resumen_dist <- datos_dist %>% filter(distancia >= -5 & distancia <= 2) %>% coun
 # Creamos un gráfico para comparar la actividad
 ggplot(resumen_dist, aes(x = distancia, y = n)) + geom_col(fill = "lightblue", col = "black") + labs(title = "Actividad en torno a entregas y cuestionarios",x = "Días respecto a la entrega", y = "Número de interacciones") 
 ```
-
-\FloatBarrier
 
 ```{r}
 # Calculamos cuanto aumenta la actividad
@@ -437,7 +429,7 @@ Cabe destacar que, al no disponer de las fechas oficiales de entrega, estas han 
 
 Primero analizamos la actividad a lo largo del curso.
 
-```{r figura-actividad, fig.cap="Actividad a lo largo del curso", fig.width=3}
+```{r figura-actividad, fig.cap="Actividad a lo largo del curso", fig.width=7, fig.height=4}
 datos_cuatri <- datos %>%
   filter(Solo_Fecha >= as.Date("2025-01-01") & Solo_Fecha <= as.Date("2025-07-31"))
 
@@ -446,7 +438,7 @@ ggplot(datos_cuatri, aes(x = Solo_Fecha)) +
                alpha = 0.5, adjust = 0.4) + 
   geom_vline(xintercept = as.numeric(as.Date("2025-05-01")), color = "red", linetype = "dashed", linewidth = 1) +
   annotate("text", x = as.Date("2025-05-03"), y = 2500, 
-           label = "Inicio Época Exámenes (Mayo)", color = "darkgreen", hjust = 0) +
+           label = "Inicio exámenes (Mayo)", color = "darkgreen", hjust = 0) +
   scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
   labs(
     title = "Actividad durante el 2º Cuatrimestre",
@@ -455,15 +447,13 @@ ggplot(datos_cuatri, aes(x = Solo_Fecha)) +
   theme_minimal()
 ```
 
-\FloatBarrier
-
 Antes de generar la gráfica, pensábamos que habría picos de conexión durante el mes de mayo, que es cuando se acercan los exámenes. Sin embargo, tras observar la Figura \@ref(fig:figura-actividad), podemos rechazar esta hipótesis inicial.
 
 Los datos revelan que el pico de conexión tuvo lugar en el mes de febrero, lo cual tiene sentido, ya que es cuando los alumnos comienzan la asignatura y descargan los materiales iniciales.
 
 Ahora pasamos a analizar cómo se distribuye la actividad a lo largo de las horas del día.
 
-```{r figura-horas, fig.cap="Distribución de la actividad según la hora del día", fig.width=3}
+```{r figura-horas, fig.cap="Distribución de la actividad según la hora del día", fig.width=7, fig.height=4}
 actividad_hora <- datos %>%
   count(Solo_Hora , name = "Total_Clics") %>%
   mutate(Periodo = ifelse(Solo_Hora  >= 22 | Solo_Hora  <= 6, "Noche (22h-06h)", "Día"))
@@ -471,7 +461,7 @@ actividad_hora <- datos %>%
 ggplot(actividad_hora, aes(x = Solo_Hora , y = Total_Clics, fill = Periodo)) +
   geom_col(color = "black", alpha = 0.85) +
   scale_fill_manual(values = c("Día" = "#F4CB15", "Noche (22h-06h)" = "#4A235A")) +
-  scale_x_continuous(breaks = 0:23) + # Obliga a R a mostrar todas las horas del 0 al 23
+  scale_x_continuous(breaks = seq(0, 23, by = 2)) +
   labs(
     title = "Distribución de la actividad según la hora del día",
     x = "Hora del día (0 - 23)",
@@ -480,8 +470,6 @@ ggplot(actividad_hora, aes(x = Solo_Hora , y = Total_Clics, fill = Periodo)) +
   theme_minimal() +
   theme(legend.position = "right")
 ```
-
-\FloatBarrier
 
 Al principio podríamos pensar que quizá haya más actividad durante la tarde, acercándonos ya a las horas de noche porque es muy típico de los alumnos intentar rescatar tareas o entregas que estuvieron procrastinando días y días.
 
@@ -518,14 +506,19 @@ Podemos observar que la frecuencia de los alumnos es muy parecida a la frecuenci
 
 Ahora visualizaremos la diferencia de actividad entre los profesores y los alumnos, para tener otra perspectiva de los datos y sus diferencias
 
-```{r}
+```{r fig-dias-comparativa, fig.cap="Actividad por día: alumnos vs profesores", fig.width=7, fig.height=3.5}
 df_profesor_alumno = datos %>% mutate(clase = ifelse(`Nombre completo del usuario`%in% profesores,"profesor","alumno"))
-df_profesor_alumno %>% ggplot(aes(x = Dia_Semana)) + geom_bar(aes(fill = Dia_Semana),color = "black") + facet_grid(~clase) + labs(title = "Actividad cada día a la semana alumno~profesor",y = "Frecuencia",x = "Día de la semana",fill = "Día") + theme(axis.text.x=element_text(angle=23)) 
+df_profesor_alumno %>% ggplot(aes(x = Dia_Semana)) + 
+  geom_bar(aes(fill = Dia_Semana),color = "black") + 
+  facet_grid(~clase) + 
+  labs(title = "Actividad cada día a la semana alumno~profesor",
+       y = "Frecuencia",
+       x = "Día de la semana", fill = "Día") + 
+  theme(axis.text.x=element_text(angle = 23)) 
 
 
 ```
 
-\FloatBarrier
 
 Comparando el recuento y el gráfico, vemos que los patrones de alumnos y profesores no son idénticos, aunque comparten algo en común: la baja actividad durante el fin de semana. En los alumnos destacan dos picos: el miércoles, que coincide con el día de clase, y el viernes, probablemente asociado a las entregas de tareas.
 
@@ -549,12 +542,16 @@ sort(horas_alumnos,decreasing = T)  %>% kable(col.names = c("Hora", "Frecuencia"
 
 Vamos a plasmar estos datos en un gráfico de barras.
 
-```{r}
- df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + geom_bar(aes(fill = factor(Solo_Hora)),color = "black")+ facet_grid(~clase)  + labs(title = "Actividad cada hora del día alumno~profesor",y = "Frecuencia",x = "Hora del día",fill = "Hora") + theme(axis.text.x=element_text(angle=23)) 
+```{r fig-horas-comparativa, fig.cap="Actividad por hora: alumnos vs profesores", fig.width=7, fig.height=3.5}
+df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + 
+  geom_bar(aes(fill = factor(Solo_Hora)), color = "black") + 
+  facet_grid(~clase) + 
+  labs(title = "Actividad cada hora del día alumno~profesor",
+       y = "Frecuencia",
+       x = "Hora del día", fill = "Hora") + 
+  theme(axis.text.x=element_text(angle=23)) 
 
 ```
-
-\FloatBarrier
 
 
 Tanto profesores como alumnos son claramente diurnos. La actividad nocturna es escasa en ambos casos, aunque los profesores se conectan algo más en las primeras y últimas horas de la noche. Los alumnos, en cambio, se concentran sobre todo en horario lectivo.
