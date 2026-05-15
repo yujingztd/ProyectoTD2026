@@ -588,10 +588,8 @@ tabla_horas %>%
   kable_styling(latex_options = "HOLD_position", font_size = 9)
 ```
 
-Las horas diurnas concentran la mayor parte de la actividad. Comparando alumnos y profesores, ambos siguen el mismo patrón general (picos a media mañana y tarde).
+La Tabla \@ref(tab:tabla-horas) muestra que las horas diurnas concentran la mayor parte de la actividad. Para visualizarlo con más claridad y compararlo entre alumnos y profesores, lo representamos a continuación en un gráfico de barras.
 
-
-Vamos a plasmar estos datos en un gráfico de barras.
 
 ```{r fig-horas-comparativa, fig.cap="Actividad por hora: alumnos vs profesores", fig.width=7, fig.height=3.5, fig.pos="H", out.extra=""}
 df_profesor_alumno %>% ggplot(aes(x = Solo_Hora)) + 
