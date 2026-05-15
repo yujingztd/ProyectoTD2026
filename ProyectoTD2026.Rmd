@@ -211,7 +211,7 @@ kable(resumen_actividades,
 ```
 
 
-```{r figura-mayor, fig.width=6, fig.height=3.5}
+```{r figura-mayor,fig.cap="Actividades con más participación", fig.width=8, fig.height=3.5}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
@@ -243,7 +243,7 @@ ggplot(bajo_uso, aes(x = reorder(`Contexto del evento`, n), y = n, fill = n)) +
 ```
 
 
-```{r figura-menor, fig.width=6, fig.height=3.5}
+```{r figura-menor, fig.cap="Actividades con menos participación", fig.width=8, fig.height=3.5}
 
 bajo_uso <- datos %>%
   filter(Componente %in% c("Tarea", "Cuestionario")) %>%
@@ -445,6 +445,10 @@ resumen_dist <- datos_dist %>% filter(distancia >= -5 & distancia <= 2) %>% coun
 # Creamos un gráfico para comparar la actividad
 ggplot(resumen_dist, aes(x = distancia, y = n)) + geom_col(fill = "lightblue", col = "black") + labs(title = "Actividad en torno a entregas y cuestionarios",x = "Días respecto a la entrega", y = "Número de interacciones") 
 ```
+
+\FloatBarrier
+
+
 
 ```{r}
 # Calculamos cuanto aumenta la actividad
